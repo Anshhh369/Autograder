@@ -2,12 +2,12 @@
 
 Welcome to the Automatic Grading System! This project builds upon the foundations of automated rubric generation, introducing an advanced AI-driven system to automatically grade assignments based on predefined rubrics. This README provides a comprehensive overview of the project, highlighting its significance, problem formulation, and implementation details.
 
+# APP Link 
+https://autograder.streamlit.app
+
 # Introduction
 
 The Automatic Grading System revolutionizes the educational assessment process by automating the grading of assignments. By leveraging cutting-edge AI and Large Language Models (LLMs), this system offers educators an intuitive platform to generate rubrics and grade assignments efficiently, ensuring consistent and accurate evaluations.
-
-# APP Link 
-https://autograder.streamlit.app
 
 # Relevance
 In modern educational environments, the efficiency and consistency of grading are paramount. This system addresses the growing need for advanced solutions that streamline the grading process, making it highly relevant for educational institutions ranging from K-12 schools to universities. By enhancing productivity and fairness, the project contributes significantly to improved educational outcomes.
