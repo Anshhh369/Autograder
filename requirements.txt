@@ -4,4 +4,4 @@ langchain
 langchain-openai
 
 pdfplumber
-docx
+python-docx
