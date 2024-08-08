@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 import pdfplumber
-from docx import Document
+import docx
 
 
 
