@@ -38,9 +38,11 @@ def extract_answers(text, patterns):
 
 # Define regex patterns for answer extraction
 patterns = {
-    "Question\s\d+:",
-    "Answer\s\d+:",
-    "Answer\s\d+:([\s\S]*?)(?=Question\s\d+:|$)",
+    "Question 1": r"Answer 1:([\s\S]*?)(?=Question 2:|$)",
+    "Question 2": r"Answer 2:([\s\S]*?)(?=Question 3:|$)",
+    "Question 3": r"Answer 3:([\s\S]*?)(?=Question 4:|$)",
+    "Question 4": r"Answer 4:([\s\S]*?)(?=Question 5:|$)",
+    "Question 5": r"Answer 5:([\s\S]*?)(?=$)"
     # Add more patterns as needed
 }
 
