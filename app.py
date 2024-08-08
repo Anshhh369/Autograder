@@ -29,20 +29,20 @@ def extract_text_from_file(uploaded_file):
 def extract_answers(text, patterns):
     extracted_answers = {}
     for question, pattern in patterns.items():
-        match = re.search(pattern, text, re.IGNORECASE)
+        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
         if match:
-            extracted_answers[question] = match.group(1).strip()
+            extracted_answers[question] = match.group(2).strip()
         else:
             extracted_answers[question] = "Answer not found"
     return extracted_answers
 
 # Define regex patterns for answer extraction
 patterns = {
-    "Question 1": r"Answer 1:([\s\S]*?)(?=Question 2:|$)",
-    "Question 2": r"Answer 2:([\s\S]*?)(?=Question 3:|$)",
-    "Question 3": r"Answer 3:([\s\S]*?)(?=Question 4:|$)",
-    "Question 4": r"Answer 4:([\s\S]*?)(?=Question 5:|$)",
-    "Question 5": r"Answer 5:([\s\S]*?)(?=$)"
+    "Question 1": r"Question 1:\s*(.*?)\s*Answer 1:\s*(.*?)(?=\s*Question 2:|$)",
+    "Question 2": r"Question 2:\s*(.*?)\s*Answer 2:\s*(.*?)(?=\s*Question 3:|$)",
+    "Question 3": r"Question 3:\s*(.*?)\s*Answer 3:\s*(.*?)(?=\s*Question 4:|$)",
+    "Question 4": r"Question 4:\s*(.*?)\s*Answer 4:\s*(.*?)(?=\s*Question 5:|$)",
+    "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
     # Add more patterns as needed
 }
 
