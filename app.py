@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 import pdfplumber
-import docx
+from docx import Document
 
 
 
@@ -22,6 +22,8 @@ def extract_text_from_file(uploaded_file):
     else:
         st.error("Unsupported file type.")
         return None
+
+    st.write()
 
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
@@ -52,9 +54,13 @@ if uploaded_file is not None:
     # Read file content
     file_content = extract_text_from_file(uploaded_file)
 
-    # Extract answers using regex patterns
-    extracted_answers = extract_answers(file_content, patterns)
+    st.write(file_content)
+    
+    if file_content:
+        # Extract answers using regex patterns
+        extracted_answers = extract_answers(file_content, patterns)
 
-    st.write("Extracted Answers:")
-    for question, answer in extracted_answers.items():
-        st.write(f"{question}: {answer}")
+        st.write("Extracted Answers:")
+        
+        for question, answer in extracted_answers.items():
+            st.write(f"{question}: {answer}")
