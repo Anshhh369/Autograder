@@ -1,5 +1,27 @@
 import streamlit as st
 import re
+import pdfplumber
+import docx
+
+
+
+# Function to extract text from uploaded files
+def extract_text_from_file(uploaded_file):
+    if uploaded_file.type == "text/plain":
+        # If the file is a .txt file
+        return uploaded_file.read().decode('utf-8')
+    elif uploaded_file.type == "application/pdf":
+        # If the file is a .pdf file
+        with pdfplumber.open(uploaded_file) as pdf:
+            pages = [page.extract_text() for page in pdf.pages]
+            return "\n".join(pages)
+    elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        # If the file is a .docx file
+        doc = docx.Document(uploaded_file)
+        return "\n".join([para.text for para in doc.paragraphs])
+    else:
+        st.error("Unsupported file type.")
+        return None
 
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
@@ -28,7 +50,7 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 
 if uploaded_file is not None:
     # Read file content
-    file_content = uploaded_file.read().decode('utf-8')
+    file_content = extract_text_from_file(uploaded_file)
 
     # Extract answers using regex patterns
     extracted_answers = extract_answers(file_content, patterns)
