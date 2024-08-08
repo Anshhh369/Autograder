@@ -2,3 +2,6 @@ streamlit
 openai
 langchain
 langchain-openai
+
+pdfplumber
+docx
