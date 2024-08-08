@@ -6,6 +6,9 @@ Welcome to the Automatic Grading System! This project builds upon the foundation
 
 The Automatic Grading System revolutionizes the educational assessment process by automating the grading of assignments. By leveraging cutting-edge AI and Large Language Models (LLMs), this system offers educators an intuitive platform to generate rubrics and grade assignments efficiently, ensuring consistent and accurate evaluations.
 
+# APP Link 
+https://autograder.streamlit.app
+
 # Relevance
 In modern educational environments, the efficiency and consistency of grading are paramount. This system addresses the growing need for advanced solutions that streamline the grading process, making it highly relevant for educational institutions ranging from K-12 schools to universities. By enhancing productivity and fairness, the project contributes significantly to improved educational outcomes.
 
@@ -28,7 +31,7 @@ Comprehensive Documentation: Providing detailed guides for effective use by educ
 
 # Data Modeling
 
-The project integrates Chroma, a robust vector database engine, with LLMs to enhance the grading process. This combination improves the system’s ability to understand diverse grading criteria, resulting in accurate and contextually relevant grading outcomes.
+The project integrates regx pattern to extract answers from the assignment, a robust vector database engine to store the assignment, with LLMs to enhance the grading process. This combination improves the system’s ability to understand diverse grading criteria, resulting in accurate and contextually relevant grading outcomes.
 
 # Conclusion
 
