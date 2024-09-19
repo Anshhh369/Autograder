@@ -38,7 +38,7 @@ def extract_answers(text, patterns):
 
 # Define regex patterns for answer extraction
 patterns = {
-    "(?<=Answer\s*\d:)"
+    "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
     # "Question 1": r"Question 1:\s*(.*?)\s*Answer 1:\s*(.*?)(?=\s*Question 2:|$)",
     # "Question 2": r"Question 2:\s*(.*?)\s*Answer 2:\s*(.*?)(?=\s*Question 3:|$)",
     # "Question 3": r"Question 3:\s*(.*?)\s*Answer 3:\s*(.*?)(?=\s*Question 4:|$)",
@@ -56,8 +56,6 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 if uploaded_file is not None:
     # Read file content
     file_content = extract_text_from_file(uploaded_file)
-
-    st.write(file_content)
     
     if file_content:
         # Extract answers using regex patterns
