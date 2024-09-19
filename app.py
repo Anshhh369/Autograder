@@ -28,6 +28,7 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
+    pattern = "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
         extracted_answers = match.group(0).strip()
@@ -35,16 +36,16 @@ def extract_answers(text, patterns):
         extracted_answers = "Answer not found"
     return extracted_answers
 
-# Define regex patterns for answer extraction
-patterns = {
-    "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
-    # "Question 1": r"Question 1:\s*(.*?)\s*Answer 1:\s*(.*?)(?=\s*Question 2:|$)",
-    # "Question 2": r"Question 2:\s*(.*?)\s*Answer 2:\s*(.*?)(?=\s*Question 3:|$)",
-    # "Question 3": r"Question 3:\s*(.*?)\s*Answer 3:\s*(.*?)(?=\s*Question 4:|$)",
-    # "Question 4": r"Question 4:\s*(.*?)\s*Answer 4:\s*(.*?)(?=\s*Question 5:|$)",
-    # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
-    # Add more patterns as needed
-}
+# # Define regex patterns for answer extraction
+# patterns = {
+#     "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
+#     # "Question 1": r"Question 1:\s*(.*?)\s*Answer 1:\s*(.*?)(?=\s*Question 2:|$)",
+#     # "Question 2": r"Question 2:\s*(.*?)\s*Answer 2:\s*(.*?)(?=\s*Question 3:|$)",
+#     # "Question 3": r"Question 3:\s*(.*?)\s*Answer 3:\s*(.*?)(?=\s*Question 4:|$)",
+#     # "Question 4": r"Question 4:\s*(.*?)\s*Answer 4:\s*(.*?)(?=\s*Question 5:|$)",
+#     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
+#     # Add more patterns as needed
+# }
 
 # Streamlit app interface
 st.title("Automatic Grading System")
