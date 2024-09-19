@@ -33,7 +33,7 @@ def extract_answers(text, patterns):
         extracted_answers = match.group(0).strip()
     else:
         extracted_answers = "Answer not found"
-return extracted_answers
+    return extracted_answers
 
 # Define regex patterns for answer extraction
 patterns = {
