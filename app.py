@@ -28,7 +28,6 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    pattern = "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
         extracted_answers = match.group(0).strip()
@@ -46,6 +45,7 @@ def extract_answers(text, patterns):
 #     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
 #     # Add more patterns as needed
 # }
+pattern = "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?"
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -59,7 +59,7 @@ if uploaded_file is not None:
     
     if file_content:
         # Extract answers using regex patterns
-        extracted_answers = extract_answers(file_content, patterns)
+        extracted_answers = extract_answers(file_content, pattern)
 
         st.write("Extracted Answers:", extracted_answers)
         
