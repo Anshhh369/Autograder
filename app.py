@@ -17,11 +17,12 @@ def extract_text_from_file(uploaded_file):
             return "\n".join(pages)
     elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
         # If the file is a .docx file
-        doc = docx.Document(uploaded_file)
-        return "\n".join([para.text for para in doc.paragraphs])
+        pages = docx.Document(uploaded_file)
+        return "\n".join([para.text for para in pages.paragraphs])
     else:
         st.error("Unsupported file type.")
         return None
+    return pages
 
 
 # Function to extract answers using regex patterns
