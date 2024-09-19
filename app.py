@@ -28,13 +28,12 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    for pattern in patterns:
-        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
-        if match:
-            extracted_answers = match.group(0).strip()
-        else:
-            extracted_answers = "Answer not found"
-    return extracted_answers
+    match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+    if match:
+        extracted_answers = match.group(0).strip()
+    else:
+        extracted_answers = "Answer not found"
+return extracted_answers
 
 # Define regex patterns for answer extraction
 patterns = {
@@ -61,7 +60,7 @@ if uploaded_file is not None:
         # Extract answers using regex patterns
         extracted_answers = extract_answers(file_content, patterns)
 
-        st.write("Extracted Answers:")
+        st.write("Extracted Answers:", extracted_answers)
         
         # for question, answer in extracted_answers.items():
         #     st.write(f"{question}: {answer}")
