@@ -23,12 +23,11 @@ def extract_text_from_file(uploaded_file):
         st.error("Unsupported file type.")
         return None
 
-    st.write()
 
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    for pattern in patterns.items():
+    for pattern in patterns:
         match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
         if match:
             extracted_answers = match.group(0).strip()
