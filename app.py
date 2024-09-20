@@ -26,34 +26,26 @@ def extract_text_from_file(uploaded_file):
 
 
 # Function to extract answers using regex patterns
-def extract_answers(text):
+def extract_answers(text,pattern):
     extracted_answers = {}
-    question_pattern = r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
-    answer_pattern = r"(Answer\s*\d:.*?)"
-    questions = re.search(question_pattern, text, re.DOTALL | re.IGNORECASE)
-    answers = re.search(answer_pattern, text,re.DOTALL | re.IGNORECASE)
-    answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
 
-    for i in range(len(questions)):
-        extracted_questions = match.questions(i).strip()  # Question on its own line
-        if i < len(answers):
-            extracted_answers = match.answers_cleaned(i).strip()  # Answer on the next line 
-        else:
-            extracted_answers = "Answer not found"
+    # Use re.search to iterate through the matches
+    search_result = re.search(pattern, text, re.DOTALL)
+    
+
+    while search_result:
+        # Extract the question and answer from the matched groups
+        question = search_result.group(1).strip()
+        
+        answer = search_result.group(2).strip()
+        answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
+        extracted_answers = extracted_answer.append(answers_cleaned)
+
             
     return extracted_answers
 
-# # Define regex patterns for answer extraction
-# patterns = {
-#     "(Question\s*\d:.*?\s?=Answer\s*\d:)[\s\S]*?)"
-#     # "Question 1": r"Question 1:\s*(.*?)\s*Answer 1:\s*(.*?)(?=\s*Question 2:|$)",
-#     # "Question 2": r"Question 2:\s*(.*?)\s*Answer 2:\s*(.*?)(?=\s*Question 3:|$)",
-#     # "Question 3": r"Question 3:\s*(.*?)\s*Answer 3:\s*(.*?)(?=\s*Question 4:|$)",
-#     # "Question 4": r"Question 4:\s*(.*?)\s*Answer 4:\s*(.*?)(?=\s*Question 5:|$)",
-#     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
-#     # Add more patterns as needed
-# }
-
+# Patterns
+pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*?)((?=Question\s*\d:|$))"
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -70,7 +62,7 @@ if uploaded_file is not None:
     
     if file_content:
         # Extract answers using regex patterns
-        extracted_answers = extract_answers(file_content)
+        extracted_answers = extract_answers(file_content,pattern)
 
         st.write("Extracted Answers:", extracted_answers)
         
