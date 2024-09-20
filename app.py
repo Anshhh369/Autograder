@@ -35,15 +35,19 @@ def extract_answers(text,pattern):
 
     if search_result:
 
-        # Extract the question and answer from the matched groups
-        question = search_result.group(1).strip()
+        for i in range(len(search_result)):
 
-        extracted_answers.append(question)
+            # Extract the question and answer from the matched groups
+            question = search_result.group(i).strip()
+
+            extracted_answers.append(question)
+
+            
         
-        answer = search_result.group(2).strip()
-        answers_cleaned = re.sub(r'(^#)', r'\\#', answer, flags=re.MULTILINE)
+            answer = search_result.group(2).strip()
+            answers_cleaned = re.sub(r'(^#)', r'\\#', answer, flags=re.MULTILINE)
         
-        extracted_answers.append(answers_cleaned)
+            extracted_answers.append(answers_cleaned)
         
     else:
         extracted_answers = st.write("Answers not found")
