@@ -30,7 +30,7 @@ def extract_answers(text, patterns):
     extracted_answers = {}
     match = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
-        extracted_answers = match.group[0]
+        extracted_answers = match
     else:
         extracted_answers = "Answer not found"
     return extracted_answers
