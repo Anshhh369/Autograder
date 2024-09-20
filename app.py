@@ -48,9 +48,8 @@ def extract_answers(text, patterns):
 #     # Add more patterns as needed
 # }
 patterns = {
-    "(Question\s*\d:.*?)"
-    "[\s\S]*"
-    "(Answer\s*\d:.*)"
+    r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
+    r"(Answer\s*\d:.*?)(?=(Question\s*\d:|$))"
 }
 
 # Streamlit app interface
