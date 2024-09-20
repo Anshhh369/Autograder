@@ -38,7 +38,7 @@ def extract_answers(text,pattern):
         question = search_result.group(1).strip()
         
         answer = search_result.group(2).strip()
-        answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
+        answers_cleaned = re.sub(r'(^#)', r'\\#', answer, flags=re.MULTILINE)
         extracted_answers = extracted_answer.append(answers_cleaned)
 
             
