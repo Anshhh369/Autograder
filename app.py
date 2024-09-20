@@ -29,7 +29,7 @@ def extract_text_from_file(uploaded_file):
 def extract_answers(text, patterns):
     extracted_answers = {}
     for pattern in patterns:
-        match = re.search(patterns, text, re.DOTALL | re.IGNORECASE)
+        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
         if match:
             extracted_answers = match.group(0).strip()
         else:
