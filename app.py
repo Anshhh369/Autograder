@@ -34,8 +34,8 @@ def extract_answers(text, patterns):
             extracted_answers = match
             solution_cleaned = re.sub(r'(^#)', r'\\#', extracted_answers, flags=re.MULTILINE)
         else:
-            extracted_answers = "Answer not found"
-        return extracted_answers
+            solution_cleaned = "Answer not found"
+        return solution_cleaned
 
 # # Define regex patterns for answer extraction
 # patterns = {
