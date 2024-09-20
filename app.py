@@ -49,6 +49,7 @@ def extract_answers(text, patterns):
 # }
 patterns = {
     "(Question\s*\d:.*?)"
+    "[\s\S]*"
     "(Answer\s*\d:.*)"
 }
 
