@@ -28,14 +28,19 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    for pattern in patterns:
-        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
-        if match:
-            extracted_answers = match.group()
-            solution_cleaned = re.sub(r'(^#)', r'\\#', extracted_answers, flags=re.MULTILINE)
-        else:
-            solution_cleaned = "Answer not found"
-        return solution_cleaned
+    for question_pattern, answer_pattern in patterns:
+        questions = re.search(question_pattern, text, re.DOTALL | re.IGNORECASE)
+        answers = re.search(answer_pattern, text,re.DOTALL | re.IGNORECASE)
+        answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
+
+        for i in range(len(questions)):
+            extracted_questions = match.questions[i].strip()  # Question on its own line
+            if i < len(answers):
+                extracted_answers = match.answers_cleaned[i].strip())  # Answer on the next line 
+            else:
+                extracted_answers = "Answer not found"
+            
+        return extracted_answers
 
 # # Define regex patterns for answer extraction
 # patterns = {
@@ -49,7 +54,7 @@ def extract_answers(text, patterns):
 # }
 patterns = {
     r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
-    r"(Answer\s*\d:.*?)(?=(Question\s*\d:|$))"
+    r"(Answer\s*\d:.*?)"
 }
 
 # Streamlit app interface
