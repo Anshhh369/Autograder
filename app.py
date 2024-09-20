@@ -26,7 +26,7 @@ def extract_text_from_file(uploaded_file):
 
 
 # Function to extract answers using regex patterns
-def extract_answers(text, patterns):
+def extract_answers(text):
     extracted_answers = {}
     question_pattern = r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
     answer_pattern = r"(Answer\s*\d:.*?)"
