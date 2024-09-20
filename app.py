@@ -45,7 +45,7 @@ def extract_answers(text, patterns):
 #     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
 #     # Add more patterns as needed
 # }
-pattern = "(Question\s*\d:.*?\s*Answer\s*\d:.*?)"
+pattern = "(Question\s*\d:.*?\s*Answer\s*\d:.*)"
 
 # Streamlit app interface
 st.title("Automatic Grading System")
