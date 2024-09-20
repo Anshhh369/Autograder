@@ -28,19 +28,20 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    for question_pattern, answer_pattern in patterns:
-        questions = re.search(question_pattern, text, re.DOTALL | re.IGNORECASE)
-        answers = re.search(answer_pattern, text,re.DOTALL | re.IGNORECASE)
-        answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
+    question_pattern = r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
+    answer_pattern = r"(Answer\s*\d:.*?)"
+    questions = re.search(question_pattern, text, re.DOTALL | re.IGNORECASE)
+    answers = re.search(answer_pattern, text,re.DOTALL | re.IGNORECASE)
+    answers_cleaned = re.sub(r'(^#)', r'\\#', answers, flags=re.MULTILINE)
 
-        for i in range(len(questions)):
-            extracted_questions = match.questions[i].strip()  # Question on its own line
-            if i < len(answers):
-                extracted_answers = match.answers_cleaned[i].strip()  # Answer on the next line 
-            else:
-                extracted_answers = "Answer not found"
+    for i in range(len(questions)):
+        extracted_questions = match.questions[i].strip()  # Question on its own line
+        if i < len(answers):
+            extracted_answers = match.answers_cleaned[i].strip()  # Answer on the next line 
+        else:
+            extracted_answers = "Answer not found"
             
-        return extracted_answers
+    return extracted_answers
 
 # # Define regex patterns for answer extraction
 # patterns = {
@@ -52,10 +53,7 @@ def extract_answers(text, patterns):
 #     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
 #     # Add more patterns as needed
 # }
-patterns = {
-    r"(Question\s*\d:.*?)(?=Answer\s*\d:)"
-    r"(Answer\s*\d:.*?)"
-}
+
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -72,7 +70,7 @@ if uploaded_file is not None:
     
     if file_content:
         # Extract answers using regex patterns
-        extracted_answers = extract_answers(file_content, patterns)
+        extracted_answers = extract_answers(file_content)
 
         st.write("Extracted Answers:", extracted_answers)
         
