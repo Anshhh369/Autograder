@@ -35,7 +35,7 @@ def extract_answers(text,pattern):
 
     if search_result:
         # Extract the question and answer from the matched groups
-        question = search_result.group(i).strip()
+        question = search_result.group(1).strip()
 
         extracted_answers.append(question)
         
