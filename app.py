@@ -28,9 +28,9 @@ def extract_text_from_file(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(text, patterns):
     extracted_answers = {}
-    match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+    match = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
-        extracted_answers = match.group().strip()
+        extracted_answers = match.group(0)
     else:
         extracted_answers = "Answer not found"
     return extracted_answers
