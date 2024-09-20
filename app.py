@@ -53,6 +53,9 @@ st.title("Automatic Grading System")
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
+# def chain():
+    
+
 if uploaded_file is not None:
     # Read file content
     file_content = extract_text_from_file(uploaded_file)
