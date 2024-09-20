@@ -32,6 +32,7 @@ def extract_answers(text, patterns):
         match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
         if match:
             extracted_answers = match.group(0).strip()
+            solution_cleaned = re.sub(r'(^#)', r'\\#', extracted_answers, flags=re.MULTILINE)
         else:
             extracted_answers = "Answer not found"
         return extracted_answers
