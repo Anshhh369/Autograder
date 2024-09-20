@@ -37,7 +37,7 @@ def extract_answers(text):
     for i in range(len(questions)):
         extracted_questions = match.questions(i).strip()  # Question on its own line
         if i < len(answers):
-            extracted_answers = match.answers_cleane(i).strip()  # Answer on the next line 
+            extracted_answers = match.answers_cleaned(i).strip()  # Answer on the next line 
         else:
             extracted_answers = "Answer not found"
             
