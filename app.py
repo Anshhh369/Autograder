@@ -50,7 +50,7 @@ def extract_answers(text,pattern):
     return extracted_answers
 
 # Patterns
-pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*?)"
+pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 
 # Streamlit app interface
 st.title("Automatic Grading System")
