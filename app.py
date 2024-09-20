@@ -30,7 +30,7 @@ def extract_answers(text, patterns):
     extracted_answers = {}
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
-        extracted_answers = match.group(0).strip()
+        extracted_answers = match.group().strip()
     else:
         extracted_answers = "Answer not found"
     return extracted_answers
@@ -45,7 +45,7 @@ def extract_answers(text, patterns):
 #     # "Question 5": r"Question 5:\s*(.*?)\s*Answer 5:\s*(.*?)(?=$)"
 #     # Add more patterns as needed
 # }
-pattern = "(Question\s*\d:.*?\s?=Answer\s*\d:)[\s\S]*?)"
+pattern = "(Question\s*\d:.*?)(?=Answer\s*\d:)[\s\S]*?)"
 
 # Streamlit app interface
 st.title("Automatic Grading System")
