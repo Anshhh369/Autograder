@@ -20,7 +20,7 @@ if "vector_store" not in st.session_state:
 
 
 def vector_db():
-    AzureSearch = AzureSearch(
+    vectore_store = AzureSearch(
     azure_search_endpoint="https://ragservices.search.windows.net",
     azure_search_key="vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr",
     index_name=index_name,
