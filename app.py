@@ -11,7 +11,7 @@ secrets = st.secrets  # Accessing secrets (API keys) stored securely
 openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
 os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable for OpenAI API key
 
-index_name = "langchain-vector-demo"
+index_name = "autograder-vectordb"
 
 if "vector_store" not in st.session_state:
     st.session_state.vector_store = None
