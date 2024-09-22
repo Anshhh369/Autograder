@@ -2,7 +2,9 @@ import streamlit as st
 import re
 import pdfplumber
 import docx
-
+import os
+from langchain_community.vectorstores.azuresearch import AzureSearch
+from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 
 
 # Function to extract text from uploaded files
