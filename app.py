@@ -3,7 +3,7 @@ import re
 import pdfplumber
 import docx
 import os
-from langchain_community.vectorstores.azuresearch import AzureSearch
+from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
