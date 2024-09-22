@@ -13,17 +13,18 @@ os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable fo
 
 index_name = "autograder-vectordb"
 
+OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+
 if "vector_store" not in st.session_state:
     st.session_state.vector_store = None
 
 
 def vector_db():
-    OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
     AzureSearch = AzureSearch(
     azure_search_endpoint="https://ragservices.search.windows.net",
     azure_search_key="vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr",
-    index_name=langchain-vector-demo,
-    embedding_function=embeddings.embed_query,
+    index_name=index_name,
+    embedding_function=OpenAIEmbeddings.embed_query,
     )
 
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
