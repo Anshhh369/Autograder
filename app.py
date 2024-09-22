@@ -6,6 +6,33 @@ import os
 from langchain_community.vectorstores.azuresearch import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 
+secrets = st.secrets  # Accessing secrets (API keys) stored securely
+
+openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
+os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable for OpenAI API key
+
+index_name = "langchain-vector-demo"
+
+if "vector_store" not in st.session_state:
+    st.session_state.vector_store = None
+
+
+def vector_db():
+    OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+    AzureSearch = AzureSearch(
+    azure_search_endpoint="https://ragservices.search.windows.net",
+    azure_search_key="vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr",
+    index_name=langchain-vector-demo,
+    embedding_function=embeddings.embed_query,
+    )
+
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    docs = text_splitter.split_documents(pages)
+
+    db = vector_store.add_documents(documents=docs)
+
+    return db
+
 
 # Function to extract text from uploaded files
 def extract_text_from_file(uploaded_file):
@@ -68,6 +95,7 @@ if uploaded_file is not None:
     file_content = extract_text_from_file(uploaded_file)
     
     if file_content:
+        st.session_state.vector_store = vector_db()
         # Extract answers using regex patterns
         extracted_answers = extract_answers(file_content,pattern)
 
