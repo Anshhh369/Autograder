@@ -16,8 +16,9 @@ os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable fo
 
 
 vector_store_address = "https://ragservices.search.windows.net"
-vector_store_password = "vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr"
+vector_store_password = "6GhRJZqLXH0Q4rb6r55zV4a3Wca0f95uzHDXSDPr7jAzSeDoTKg4"
 index_name = "autograder-vectordb"
+
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 if "vector_store" not in st.session_state:
