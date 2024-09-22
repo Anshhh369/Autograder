@@ -11,8 +11,13 @@ secrets = st.secrets  # Accessing secrets (API keys) stored securely
 openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
 os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable for OpenAI API key
 
-index_name = "autograder-vectordb"
 
+
+
+
+vector_store_address = "<https://ragservices.search.windows.net>"
+vector_store_password = "<vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr>"
+index_name = "autograder-vectordb"
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 if "vector_store" not in st.session_state:
@@ -21,8 +26,8 @@ if "vector_store" not in st.session_state:
 
 def vector_db():
     vectore_store = AzureSearch(
-    azure_search_endpoint="https://ragservices.search.windows.net",
-    azure_search_key="vIVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr",
+    azure_search_endpoint=vector_store_address,
+    azure_search_key=vector_store_password,
     index_name=index_name,
     embedding_function=OpenAIEmbeddings.embed_query,
     )
