@@ -18,7 +18,7 @@ secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
 openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
 os.environ["OPENAI_API_KEY"] = openai_api_key  # Setting environment variable for OpenAI API key
-
+model = "text-embedding-ada-002"
 
 
 azure_api_key = secrets["azure"]["api_key"]
@@ -28,7 +28,7 @@ vector_store_address = "https://ragservices.search.windows.net"
 vector_store_password = "IVMAEF98D6Tn8w4eQ53VstzUHXfelrAJn4sBPlY8hZAzSeByAPxr"
 index_name = "autograder-vectordb"
 
-OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
 # if "vector_store" not in st.session_state:
 #     st.session_state.vector_store = None
@@ -70,8 +70,8 @@ def extract_text_from_file(uploaded_file):
     # Load documents and split text
     docs = loader.load()
                     
-    # text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    # documents = text_splitter.split_documents(docs)
+    text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    documents = text_splitter.split_documents(docs)
 
     vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
@@ -81,7 +81,7 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    db = vector_store.add_documents(documents=docs)
+    db = vector_store.add_documents(documents=documents)
         
     return text
 
