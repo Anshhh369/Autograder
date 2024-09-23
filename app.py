@@ -62,7 +62,7 @@ def extract_text_from_file(uploaded_file):
         return None
 
     
-
+    doc = Document(page_content=file_content)
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     docs = text_splitter.split_documents(doc)
