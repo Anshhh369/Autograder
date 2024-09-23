@@ -84,8 +84,11 @@ def extract_text_from_file(uploaded_file):
 
     prepared_docs = [
         Document(
+            # id=str(uuid.uuid4()),  # Ensure unique ID
+            # page_content=doc.page_content
             id=str(uuid.uuid4()),  # Ensure unique ID
-            page_content=doc.page_content
+            page_content=doc.page_content,  # Correct field for content
+            metadata=doc.metadata  
         ) for doc in documents
     ]
     
