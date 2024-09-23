@@ -44,7 +44,6 @@ def vector_db():
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-
     db = vector_store.add_documents(documents=docs)
     
     return db
@@ -92,7 +91,7 @@ def extract_text_from_file(uploaded_file):
 
 # Function to extract answers using regex patterns
 def extract_answers(text,pattern):
-    extracted_answers = []
+    extracted_answers = {}
 
     # Use re.search to iterate through the matches
     search_result = re.search(pattern, text, re.DOTALL)
