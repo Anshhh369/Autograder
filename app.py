@@ -36,8 +36,6 @@ def vector_db():
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    docs = text_splitter.split_documents(pages)
 
     db = vector_store.add_documents(documents=docs)
 
@@ -61,7 +59,11 @@ def extract_text_from_file(uploaded_file):
     else:
         st.error("Unsupported file type.")
         return None
-    return pages
+
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    docs = text_splitter.split_documents(pages)
+    
+    return docs
 
 
 # Function to extract answers using regex patterns
@@ -105,11 +107,12 @@ if uploaded_file is not None:
     file_content = extract_text_from_file(uploaded_file)
     
     if file_content:
-        st.session_state.vector_store = vector_db()
         # Extract answers using regex patterns
         extracted_answers = extract_answers(file_content,pattern)
 
         st.write("Extracted Answers:", extracted_answers)
+
+        st.session_state.vector_store = vector_db()
         
         # for question, answer in extracted_answers.items():
         #     st.write(f"{question}: {answer}")
