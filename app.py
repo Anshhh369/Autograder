@@ -70,13 +70,9 @@ def extract_text_from_file(uploaded_file):
 
     # Load documents and split text
     docs = loader.load()
-
-    prepared_docs = [Document(page_content=doc.page_content, metadata=doc.metadata) for doc in docs]
-
-    
                     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    documents = text_splitter.split_documents(prepared_docs)
+    documents = text_splitter.split_documents(docs)
 
     vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
@@ -86,15 +82,16 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    # Ensure the correct field name 'id' and populate it with a unique value
-    d = [
-        {
-            "id": str(uuid.uuid4()),  # Unique ID for each document
-            "content": doc.page_content,  # Use the field name expected by your Azure Search index
-        } for doc in documents
+    prepared_docs = [
+        Document(
+            page_content=doc.page_content, 
+            metadata={
+                "id": str(uuid.uuid4())
+            }
+        ) for doc in documents
     ]
     
-    db = vector_store.add_documents(documents=d)
+    db = vector_store.add_documents(documents=prepared_docs)
         
     return text
 
