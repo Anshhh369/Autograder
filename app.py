@@ -6,6 +6,7 @@ import os
 import tempfile
 import os.path
 import pathlib
+import uuid
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
