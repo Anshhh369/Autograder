@@ -96,7 +96,7 @@ def extract_answers(text,pattern):
     # Use re.search to iterate through the matches
     search_result = re.search(pattern, text, re.DOTALL)
     
-
+    
     if search_result:
         # Extract the question and answer from the matched groups
         question = search_result.group(1).strip()
