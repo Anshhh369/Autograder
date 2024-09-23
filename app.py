@@ -47,22 +47,22 @@ def vector_db():
 def extract_text_from_file(uploaded_file):
     if uploaded_file.type == "text/plain":
         # If the file is a .txt file
-        return uploaded_file.read().decode('utf-8')
+        doc = uploaded_file.read().decode('utf-8')
     elif uploaded_file.type == "application/pdf":
         # If the file is a .pdf file
         with pdfplumber.open(uploaded_file) as pdf:
             pages = [page.extract_text() for page in pdf.pages]
-            return "\n".join(pages)
+            doc = "\n".join(pages)
     elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
         # If the file is a .docx file
         pages = docx.Document(uploaded_file)
-        return "\n".join([para.text for para in pages.paragraphs])
+        doc = "\n".join([para.text for para in pages.paragraphs])
     else:
         st.error("Unsupported file type.")
         return None
 
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    docs = text_splitter.split_documents(pages)
+    docs = text_splitter.split_documents(doc)
     
     return docs
 
