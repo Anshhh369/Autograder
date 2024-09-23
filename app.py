@@ -6,6 +6,7 @@ import os
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.docstore.document import Document
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
