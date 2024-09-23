@@ -68,7 +68,7 @@ def extract_text_from_file(uploaded_file):
         st.error("Unsupported file type.")
         return None
 
-    Load documents and split text
+    # Load documents and split text
     docs = loader.load()
     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
