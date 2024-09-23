@@ -81,7 +81,7 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    db = vector_store.add_documents(documents=documents)
+    db = vector_store.add_documents(documents=text)
         
     return text
 
