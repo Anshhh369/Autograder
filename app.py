@@ -43,10 +43,8 @@ def vector_db():
         api_version = "2024-05-01-preview",
         embedding_function=OpenAIEmbeddings.embed_query,
     )
-
-    db = vector_store.add_documents(documents=docs)
     
-    return db
+    return vector_store
 
 
 # Function to extract text from uploaded files
@@ -86,6 +84,7 @@ def extract_text_from_file(uploaded_file):
                     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
+    db = vector_store.add_documents(documents=documents)
         
     return text
 
@@ -127,16 +126,19 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 
 # def chain():
 if uploaded_file is not None:
+
+    st.session_state.vector_store = vector_db()
+    
     # Read file content
     file_content = extract_text_from_file(uploaded_file)
     
     if file_content:
+        
         # Extract answers using regex patterns
         extracted_answers = extract_answers(file_content,pattern)
 
         st.write("Extracted Answers:", extracted_answers)
 
-        st.session_state.vector_store = vector_db()
         
         # for question, answer in extracted_answers.items():
         #     st.write(f"{question}: {answer}")
