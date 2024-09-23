@@ -68,16 +68,8 @@ def extract_text_from_file(uploaded_file):
         st.error("Unsupported file type.")
         return None
 
-    # Load documents and split text
-    # docs = loader.load()
-
-    docs = [
-        {
-            "id": str(uuid.uuid4()),  # or a meaningful ID if applicable
-            "content": text,  # Assuming 'content' is the field in your index where text goes
-            "filename": uploaded_file.name  # Include other necessary fields
-        }
-    ]
+    Load documents and split text
+    docs = loader.load()
     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
@@ -88,6 +80,8 @@ def extract_text_from_file(uploaded_file):
         index_name=index_name,
         api_version = "2024-05-01-preview",
         embedding_function=OpenAIEmbeddings.embed_query,
+        # Configure max retries for the Azure client
+        additional_search_client_options={"retry_total": 4},
     )
 
     db = vector_store.add_documents(documents=documents)
