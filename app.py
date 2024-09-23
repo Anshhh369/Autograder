@@ -30,21 +30,9 @@ index_name = "autograder-vectordb"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
-if "vector_store" not in st.session_state:
-    st.session_state.vector_store = None
+# if "vector_store" not in st.session_state:
+#     st.session_state.vector_store = None
 
-
-def vector_db():
-    
-    vector_store = AzureSearch(
-        azure_search_endpoint=vector_store_address,
-        azure_search_key=vector_store_password,
-        index_name=index_name,
-        api_version = "2024-05-01-preview",
-        embedding_function=OpenAIEmbeddings.embed_query,
-    )
-    
-    return vector_store
 
 
 # Function to extract text from uploaded files
@@ -84,6 +72,15 @@ def extract_text_from_file(uploaded_file):
                     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
+
+    vector_store = AzureSearch(
+        azure_search_endpoint=vector_store_address,
+        azure_search_key=vector_store_password,
+        index_name=index_name,
+        api_version = "2024-05-01-preview",
+        embedding_function=OpenAIEmbeddings.embed_query,
+    )
+
     db = vector_store.add_documents(documents=documents)
         
     return text
@@ -127,7 +124,7 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 # def chain():
 if uploaded_file is not None:
 
-    st.session_state.vector_store = vector_db()
+    # st.session_state.vector_store = vector_db()
     
     # Read file content
     file_content = extract_text_from_file(uploaded_file)
