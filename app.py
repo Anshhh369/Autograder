@@ -45,41 +45,41 @@ def vector_db():
 
 
 # Function to extract text from uploaded files
-def extract_text_from_file(uploaded_files):
+def extract_text_from_file(uploaded_file):
     
-    for uploaded_file in uploaded_files:
+    # for uploaded_file in uploaded_files:
         
-        file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
-        # Save file to a temporary directory
-        temp_dir = tempfile.mkdtemp()
-        path = os.path.join(temp_dir, uploaded_file.name)
+    file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
+    # Save file to a temporary directory
+    temp_dir = tempfile.mkdtemp()
+    path = os.path.join(temp_dir, uploaded_file.name)
         
-        with open(path, "wb") as f:
-            f.write(uploaded_file.getvalue())
+    with open(path, "wb") as f:
+        f.write(uploaded_file.getvalue())
 
-        # Determine file extension
-        file_extension = uploaded_file.name.split(".")[-1].lower()
+    # Determine file extension
+    file_extension = uploaded_file.name.split(".")[-1].lower()
 
-        # Load document based on its extension
-        if file_extension == "txt":
-            loader = uploaded_file.read().decode('utf-8')
-        elif file_extension == "pdf":
-            loader = PyPDFLoader(path)
-        elif file_extension == "docx":
-            loader = Docx2txtLoader(path)
-        else:
-            st.error("Unsupported file type.")
-            return None
+    # Load document based on its extension
+    if file_extension == "txt":
+        loader = uploaded_file.read().decode('utf-8')
+    elif file_extension == "pdf":
+        loader = PyPDFLoader(path)
+    elif file_extension == "docx":
+        loader = Docx2txtLoader(path)
+    else:
+        st.error("Unsupported file type.")
+        return None
 
-        # Load documents and split text
-        docs = loader.load()
+    # Load documents and split text
+    docs = loader.load()
         
-        for doc in docs:
-            text = doc.page_content
-            st.write("file contents: \n", text)
+    for doc in docs:
+        text = doc.page_content
+        st.write("file contents: \n", text)
                     
-        text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-        documents = text_splitter.split_documents(docs)
+    text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    documents = text_splitter.split_documents(docs)
         
     return docs
 
@@ -115,13 +115,13 @@ pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 st.title("Automatic Grading System")
 
 # File uploader
-uploaded_files = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
+uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
 
 # def chain():
-if uploaded_files is not None:
+if uploaded_file is not None:
     # Read file content
-    file_content = extract_text_from_file(uploaded_files)
+    file_content = extract_text_from_file(uploaded_file)
     
     if file_content:
         # Extract answers using regex patterns
