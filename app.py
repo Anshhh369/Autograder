@@ -28,10 +28,10 @@ if "vector_store" not in st.session_state:
 
 def vector_db():
     vectore_store = AzureSearch(
-    azure_search_endpoint=vector_store_address,
-    azure_search_key=vector_store_password,
-    index_name=index_name,
-    embedding_function=OpenAIEmbeddings.embed_query,
+        azure_search_endpoint=vector_store_address,
+        azure_search_key=vector_store_password,
+        index_name=index_name,
+        embedding_function=OpenAIEmbeddings.embed_query,
     )
 
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
