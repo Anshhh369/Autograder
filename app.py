@@ -82,16 +82,7 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    prepared_docs = [
-        Document(
-            # id=str(uuid.uuid4()),  # Ensure unique ID
-            # page_content=doc.page_content
-            id=str(uuid.uuid4()),  # Ensure unique ID
-            content=doc.page_content 
-        ) for doc in documents
-    ]
-    
-    db = vector_store.add_documents(documents=prepared_docs)
+    db = vector_store.add_documents(documents=documents)
         
     return text
 
