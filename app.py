@@ -28,7 +28,8 @@ if "vector_store" not in st.session_state:
 
 
 def vector_db():
-    vectore_store = AzureSearch(
+    
+    vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
         azure_search_key=vector_store_password,
         index_name=index_name,
@@ -38,7 +39,7 @@ def vector_db():
 
 
     db = vector_store.add_documents(documents=docs)
-
+    
     return db
 
 
