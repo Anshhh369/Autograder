@@ -5,7 +5,7 @@ import docx
 import os
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
-from langchain_text_splitters import CharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
@@ -61,7 +61,10 @@ def extract_text_from_file(uploaded_file):
         st.error("Unsupported file type.")
         return None
 
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    
+
+    
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     docs = text_splitter.split_documents(doc)
     
     return docs
