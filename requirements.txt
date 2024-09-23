@@ -8,7 +8,5 @@ pdfplumber
 python-docx
 azure-search-documents
 azure-identity
-
-
 docx2txt
 PyPDF
