@@ -5,6 +5,7 @@ import docx
 import os
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
+from langchain_text_splitters import CharacterTextSplitter
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
@@ -31,6 +32,7 @@ def vector_db():
         azure_search_endpoint=vector_store_address,
         azure_search_key=vector_store_password,
         index_name=index_name,
+        api_version = "2024-05-01-preview",
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
