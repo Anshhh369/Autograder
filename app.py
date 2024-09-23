@@ -84,10 +84,7 @@ def extract_text_from_file(uploaded_file):
 
     prepared_docs = [
         Document(
-            page_content=doc.page_content, 
-            metadata={
-                "id": str(uuid.uuid4())
-            }
+            id=doc.page_content
         ) for doc in documents
     ]
     
