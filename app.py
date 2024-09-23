@@ -69,8 +69,13 @@ def extract_text_from_file(uploaded_file):
         return None
 
     # Load documents and split text
-    docs = loader.load()
-                    
+    # docs = loader.load()
+
+    # Create documents with required fields
+    docs = [
+        Document(page_content=text, metadata={"id": str(uuid.uuid4()), "filename": uploaded_file.name})
+    ]
+    
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
 
