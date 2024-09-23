@@ -94,7 +94,7 @@ def extract_text_from_file(uploaded_file):
 
 # Function to extract answers using regex patterns
 def extract_answers(text,pattern):
-    extracted_answers = None
+    extracted_answers = []
 
     # Use re.search to iterate through the matches
     search_result = re.search(pattern, text, re.DOTALL)
