@@ -70,7 +70,7 @@ def extract_text_from_file(uploaded_file):
     # Load documents and split text
     docs = loader.load()
 
-    prepared_docs = [{"content": doc.page_content, "metadata": doc.metadata} for doc in docs]
+    prepared_docs = [{"id": doc.metadata, "String": doc.page_content} for doc in docs]
                     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
