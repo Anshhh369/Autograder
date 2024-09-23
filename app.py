@@ -83,13 +83,11 @@ def extract_text_from_file(uploaded_file):
 
     # Load documents and split text
     docs = loader.load()
-    
-    st.write("file contents: \n", text)
                     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
         
-    return docs
+    return text
 
 
 # Function to extract answers using regex patterns
