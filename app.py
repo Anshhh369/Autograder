@@ -3,10 +3,16 @@ import re
 import pdfplumber
 import docx
 import os
+import tempfile
+import os.path
+import pathlib
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
+from langchain_community.document_loaders import PyPDFLoader,Docx2txtLoader,TextLoader
+
+
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
