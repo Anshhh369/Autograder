@@ -71,9 +71,12 @@ def extract_text_from_file(uploaded_file):
     # Load documents and split text
     # docs = loader.load()
 
-    # Create documents with required fields
     docs = [
-        Document(page_content=text, metadata={"id": str(uuid.uuid4()), "filename": uploaded_file.name})
+        {
+            "id": str(uuid.uuid4()),  # or a meaningful ID if applicable
+            "content": text,  # Assuming 'content' is the field in your index where text goes
+            "filename": uploaded_file.name  # Include other necessary fields
+        }
     ]
     
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
