@@ -73,6 +73,11 @@ def extract_text_from_file(uploaded_file):
     text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(docs)
 
+    d = [
+        {"id": i, "content": chunk} 
+        for i, chunk in enumerate(text.split('\n'))  # Splitting text into chunks by newlines for example
+    ]
+
     vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
         azure_search_key=vector_store_password,
@@ -81,7 +86,7 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    db = vector_store.add_documents(documents=text)
+    db = vector_store.add_documents(documents=d)
         
     return text
 
