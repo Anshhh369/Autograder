@@ -17,7 +17,7 @@ azure_api_key = secrets["azure"]["api_key"]
 os.environ["AZURE_API_KEY"] = azure_api_key
 
 vector_store_address = "https://ragservices.search.windows.net"
-vector_store_password = "azure_api_key"
+vector_store_password = "6GhRJZqLXH0Q4rb6r55zV4a3Wca0f95uzHDXSDPr7jAzSeDoTKg4"
 index_name = "autograder-vectordb"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
