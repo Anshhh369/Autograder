@@ -70,8 +70,8 @@ def extract_text_from_file(uploaded_file):
     # Load documents and split text
     docs = loader.load()
                     
-    text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    documents = text_splitter.split_documents(docs)
+    # text_splitter =  RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    # documents = text_splitter.split_documents(docs)
 
     vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
@@ -81,7 +81,7 @@ def extract_text_from_file(uploaded_file):
         embedding_function=OpenAIEmbeddings.embed_query,
     )
 
-    db = vector_store.add_documents(documents=documents)
+    db = vector_store.add_documents(documents=docs)
         
     return text
 
