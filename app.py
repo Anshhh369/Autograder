@@ -1,4 +1,4 @@
-import document_process from document_processing
+import process_document from document_processing
 import extract_answers from answers_extraction
 import streamlit as st
 
@@ -15,7 +15,7 @@ if uploaded_file is not None:
     # st.session_state.vector_store = vector_db()
     
     # Read file content
-    file_content = extract_text_from_file(uploaded_file)
+    file_content = process_document(uploaded_file)
     
     if file_content:
         
