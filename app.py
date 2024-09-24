@@ -1,5 +1,6 @@
 import document_process from document_processing
 import extract_answers from answers_extraction
+import streamlit as st
 
 # Streamlit app interface
 st.title("Automatic Grading System")
