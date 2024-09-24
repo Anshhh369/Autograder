@@ -1,5 +1,6 @@
 from langchain.docstore.document import Document
 from langchain_community.document_loaders import PyPDFLoader,Docx2txtLoader,TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pdfplumber
 import docx
 import tempfile
