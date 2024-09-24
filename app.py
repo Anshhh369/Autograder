@@ -1,11 +1,5 @@
-
-
-
-
-
-
-
-
+import document_process from document_processing
+import extract_answers from answers_extraction
 
 # Streamlit app interface
 st.title("Automatic Grading System")
