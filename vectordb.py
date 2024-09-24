@@ -20,7 +20,7 @@ model = "text-embedding-ada-002"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
-def vector_store():
+def vector_store(document):
   
   vector_store = AzureSearch(
         azure_search_endpoint=vector_store_address,
@@ -32,7 +32,7 @@ def vector_store():
         additional_search_client_options={"retry_total": 4},
     )
 
-    db = vector_store.add_documents(documents=documents)
+    db = vector_store.add_documents(document)
 
   return db
         
