@@ -1,5 +1,4 @@
-
-
+import re
 
 # Pattern
 pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
