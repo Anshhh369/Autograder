@@ -14,7 +14,6 @@ from langchain.docstore.document import Document
 from langchain_community.document_loaders import PyPDFLoader,Docx2txtLoader,TextLoader
 
 
-
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
 openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
@@ -139,30 +138,3 @@ if uploaded_file is not None:
 
         st.write("Extracted Answers:", extracted_answers)
 
-        
-        # for question, answer in extracted_answers.items():
-        #     st.write(f"{question}: {answer}")
-
-
-
-
-
-
-
-
-
-
-
-    # if uploaded_file.type == "text/plain":
-    #     # If the file is a .txt file
-    #     doc = uploaded_file.read().decode('utf-8')
-    # elif uploaded_file.type == "application/pdf":
-        
-    #     If the file is a .pdf file
-    #     with pdfplumber.open(uploaded_file) as pdf:
-    #         pages = [page.extract_text() for page in pdf.pages]
-    #         doc = "\n".join(pages)
-    # elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-    #     # If the file is a .docx file
-    #     pages = docx.Document(uploaded_file)
-    #     doc = "\n".join([para.text for para in pages.paragraphs])
