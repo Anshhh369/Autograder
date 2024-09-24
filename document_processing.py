@@ -1,3 +1,6 @@
+import pdfplumber
+import docx
+
 # Function to extract text from uploaded files
 def extract_text_from_file(uploaded_file):
     
