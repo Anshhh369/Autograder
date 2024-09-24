@@ -1,3 +1,5 @@
+from langchain.docstore.document import Document
+from langchain_community.document_loaders import PyPDFLoader,Docx2txtLoader,TextLoader
 import pdfplumber
 import docx
 import tempfile
