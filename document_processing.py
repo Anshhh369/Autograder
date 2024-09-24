@@ -48,8 +48,23 @@ def process_document(uploaded_file):
 
 # Function to extract answers using regex patterns
 def extract_answers(text,pattern):
+    
+    if file_extension == "txt":
+        text = uploaded_file.read().decode('utf-8')
+    elif file_extension == "pdf":
+        with pdfplumber.open(uploaded_file) as pdf:
+            pages = [page.extract_text() for page in pdf.pages]
+            text = "\n".join(pages)
+    elif file_extension == "docx":
+        pages = docx.Document(uploaded_file)
+        text = "\n".join([para.text for para in pages.paragraphs])
+
+
     extracted_answers = []
 
+    # Pattern
+    pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
+    
     # Use re.search to iterate through the matches
     search_result = re.search(pattern, text, re.DOTALL)
     
