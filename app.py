@@ -1,5 +1,4 @@
-import process_document from document_processing
-import extract_answers from answers_extraction
+from document_processing import process_document,extract_answers 
 import streamlit as st
 
 # Streamlit app interface
