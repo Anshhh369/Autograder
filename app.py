@@ -18,13 +18,13 @@ if uploaded_file is not None:
     # Read file content
     file_content = process_document(uploaded_file)
 
+    # Extract answers using regex patterns
+    extracted_answers = extract_answers(uploaded_file,pattern)
+
+    st.write("Extracted Answers:", extracted_answers)
+
     
     if file_content:
 
         st.session_state.vector_store = vector_db(file_content)
-        
-        # Extract answers using regex patterns
-        extracted_answers = extract_answers(file_content,pattern)
-
-        st.write("Extracted Answers:", extracted_answers)
 
