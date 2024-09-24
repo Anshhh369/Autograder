@@ -1,3 +1,7 @@
+import os
+from langchain_community.vectorstores import AzureSearch
+from langchain_openai import AzureOpenAIEmbeddings, OpenAIEmbeddings
+
 azure_api_key = secrets["azure"]["api_key"]
 os.environ["AZURE_API_KEY"] = azure_api_key
 
