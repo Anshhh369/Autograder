@@ -1,5 +1,18 @@
 import re
 
+
+
+if file_extension == "txt":
+    text = uploaded_file.read().decode('utf-8')
+elif file_extension == "pdf":
+    with pdfplumber.open(uploaded_file) as pdf:
+        pages = [page.extract_text() for page in pdf.pages]
+        text = "\n".join(pages)
+elif file_extension == "docx":
+    pages = docx.Document(uploaded_file)
+    text = "\n".join([para.text for para in pages.paragraphs])
+
+
 # Pattern
 pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 
