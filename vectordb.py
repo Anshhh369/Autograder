@@ -30,9 +30,9 @@ def vector_db(document):
         embedding_function=OpenAIEmbeddings.embed_query,
         # Configure max retries for the Azure client
         additional_search_client_options={"retry_total": 4},
-    )
+  )
 
-    db = vector_store.add_documents(document)
+  db = vector_store.add_documents(document)
 
   return db
         
