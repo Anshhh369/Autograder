@@ -1,5 +1,6 @@
 from document_processing import process_document,extract_answers 
 import streamlit as st
+from vectorb import vector_db
 
 if "vector_store" not in st.session_state:
     st.session_state.vextor_store = None
