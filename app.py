@@ -3,7 +3,8 @@ import streamlit as st
 
 if "vector_store" not in st.session_state:
     st.session_state.vextor_store = None
-
+if "uploaded_file" not in st.session_state:
+    st.session_state.uploaded_file = None
 
 # Streamlit app interface
 st.title("Automatic Grading System")
