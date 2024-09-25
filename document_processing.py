@@ -9,22 +9,24 @@ import pathlib
 import re
 
 
-file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
-    
-# Save file to a temporary directory
-temp_dir = tempfile.mkdtemp()
-path = os.path.join(temp_dir, uploaded_file.name)
-        
-with open(path, "wb") as f:
-    f.write(uploaded_file.getvalue())
 
-# Determine file extension
-file_extension = uploaded_file.name.split(".")[-1].lower()
 
 # Function to extract text from uploaded files
 def process_document(uploaded_file):
+    file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
+    
+    # Save file to a temporary directory
+    temp_dir = tempfile.mkdtemp()
+    path = os.path.join(temp_dir, uploaded_file.name)
+        
+    with open(path, "wb") as f:
+        f.write(uploaded_file.getvalue())
 
+    # Determine file extension
+    file_extension = uploaded_file.name.split(".")[-1].lower()
+    
     # Load document based on its extension
+    
     if file_extension == "txt":
         loader = TextLoader(path)
     elif file_extension == "pdf":
@@ -46,6 +48,18 @@ def process_document(uploaded_file):
 
 # Function to extract answers using regex patterns
 def extract_answers(uploaded_file,pattern):
+
+    file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
+    
+    # Save file to a temporary directory
+    temp_dir = tempfile.mkdtemp()
+    path = os.path.join(temp_dir, uploaded_file.name)
+        
+    with open(path, "wb") as f:
+        f.write(uploaded_file.getvalue())
+
+    # Determine file extension
+    file_extension = uploaded_file.name.split(".")[-1].lower()
     
     if file_extension == "txt":
         text = uploaded_file.read().decode('utf-8')
