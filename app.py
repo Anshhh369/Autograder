@@ -3,7 +3,7 @@ import streamlit as st
 from vectordb import vector_db
 
 if "vector_store" not in st.session_state:
-    st.session_state.vextor_store = None
+    st.session_state.vector_store = None
 if "uploaded_file" not in st.session_state:
     st.session_state.uploaded_file = None
 
