@@ -9,6 +9,9 @@ if "uploaded_file" not in st.session_state:
 # Streamlit app interface
 st.title("Automatic Grading System")
 
+# Pattern
+pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
+
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
