@@ -12,15 +12,16 @@ st.title("Automatic Grading System")
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
-
 # def chain():
-if uploaded_file is not None:
+if uploaded_file:
+
+    st.session_state.uploaded_file = uploaded_file
     
     # Read file content
-    file_content = process_document(uploaded_file)
+    file_content = process_document(st.session_state.uploaded_file)
 
     # Extract answers using regex patterns
-    extracted_answers = extract_answers(uploaded_file,pattern)
+    extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
 
     st.write("Extracted Answers:", extracted_answers)
 
