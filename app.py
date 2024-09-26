@@ -1,6 +1,8 @@
 from document_processing import process_document,extract_answers 
 import streamlit as st
 from vectordb import vector_db
+from rubrics import rubrics
+from example import example
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
