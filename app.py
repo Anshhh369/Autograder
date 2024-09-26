@@ -52,7 +52,7 @@ if uploaded_file:
 
     st.session_state.uploaded_file = file_content
 
-    Extract answers using regex patterns
+    # Extract answers using regex patterns
     extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
 
     st.write("Extracted Answers:", extracted_answers)
