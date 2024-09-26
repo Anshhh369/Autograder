@@ -37,10 +37,11 @@ st.session_state.example = example()
 # def chain():
 if uploaded_file:
 
-    st.session_state.uploaded_file = uploaded_file
     
     # Read file content
     file_content = process_document(uploaded_file)
+
+    st.session_state.uploaded_file = file_content
 
     # Extract answers using regex patterns
     extracted_answers = extract_answers(uploaded_file,pattern)
@@ -48,9 +49,9 @@ if uploaded_file:
     st.write("Extracted Answers:", extracted_answers)
 
     
-    if file_content:
+    if st.session_state.uploaded_file:
         
-        vector_store = vector_db(file_content)
+        st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
 
 
         # Display chat messages from history on app rerun
