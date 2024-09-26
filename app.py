@@ -53,14 +53,16 @@ if uploaded_file:
     st.session_state.uploaded_file = file_content
 
     # Extract answers using regex patterns
-    extracted_answers = extract_answers(uploaded_file,pattern)
+    # extracted_answers = extract_answers(uploaded_file,pattern)
 
-    st.write("Extracted Answers:", extracted_answers)
+    # st.write("Extracted Answers:", extracted_answers)
 
     
     if st.session_state.uploaded_file:
         
         st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
+
+        st.write("Assignment Uploaded Successfully")
 
 
         # Display chat messages from history on app rerun
