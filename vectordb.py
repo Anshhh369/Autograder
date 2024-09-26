@@ -32,7 +32,7 @@ def vector_db(document):
     additional_search_client_options={"retry_total": 4},
   )
   
-  db = vector_store.add_documents(document)
+  db = vector_store.add_documents(documents=document)
 
   return db
         
