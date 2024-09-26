@@ -13,7 +13,7 @@ os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
 
-def get_chain(assignment,predefined_rubrics,example):
+def get_chain(assignment,predefined_rubrics,example,chat_history):
         
         system_prompt = """
         
@@ -25,7 +25,10 @@ def get_chain(assignment,predefined_rubrics,example):
         
         Context : {example}
         
-        Provide a complete output with scores and detailed explanation, also ask user if they want any modification or adjustments to the scores generated.
+        Provide a complete output with scores and detailed feedback, also ask user if they want any modification or adjustments to the scores generated.
+        Keep the chat history to have memory and not repeat questions and be consistent with the rubric generated.
+        
+        chat history: {chat_history}
         
         
         """
@@ -34,7 +37,7 @@ def get_chain(assignment,predefined_rubrics,example):
                 [("system", system_prompt), ("human", "{input}")]
         )
 
-        prompt.format_messages(input = "query", assignment = "st.session_state.vector_store", example = "st.session_state.example", predefined_rubrics = "st.session_state.rubrics")
+        prompt.format_messages(input = "query", assignment = "st.session_state.vector_store", example = "st.session_state.example", predefined_rubrics = "st.session_state.rubrics", chat_history = "st.session_state.chat_history")
 
         model_name = "gpt-4"
         llm = ChatOpenAI(model_name=model_name)
@@ -58,8 +61,8 @@ def get_chain(assignment,predefined_rubrics,example):
 
 def get_scores(query):
         
-        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.example)
-        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store,"example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics})
+        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.example,st.session_state.chat_history)
+        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store,"example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
                 answer = response['text']
