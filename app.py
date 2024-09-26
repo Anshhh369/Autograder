@@ -1,4 +1,4 @@
-from document_processing import process_document
+from document_processing import process_document, extract_answers
 import streamlit as st
 from vectordb import vector_db
 from rubrics import rubrics
@@ -52,8 +52,8 @@ if uploaded_file:
 
     st.session_state.uploaded_file = file_content
 
-    # Extract answers using regex patterns
-    # extracted_answers = extract_answers(uploaded_file,pattern)
+    Extract answers using regex patterns
+    extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
 
     # st.write("Extracted Answers:", extracted_answers)
 
