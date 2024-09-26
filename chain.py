@@ -25,7 +25,7 @@ def get_chain(assignment,predefined_rubrics,example):
         
         Context : {example}
         
-        Lastly, ask user if you want any modification or adjustments to the scores generated? If the user says no then end the conversation.
+        Provide a complete output with scores and detailed explanation, also ask user if they want any modification or adjustments to the scores generated.
         
         
         """
