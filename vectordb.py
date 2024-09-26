@@ -24,7 +24,7 @@ def vector_db(document):
   
   vector_store = AzureSearch(
     azure_search_endpoint=vector_store_address,
-    azure_search_key=vector_store_password,
+    azure_search_key="FiylQvQbZq8dD1O2m0n2apWsYtN5cvAYPnbbdLC4SLAzSeAgEtPP",
     index_name=index_name,
     api_version = "2024-05-01-preview",
     embedding_function=OpenAIEmbeddings.embed_query,
