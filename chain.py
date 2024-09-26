@@ -1,3 +1,17 @@
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import LLMChain, create_retrieval_chain
+from langchain.prompts.chat import ChatPromptTemplate
+from langchain_community.retrievers import AzureAISearchRetriever
+import streamlit as st
+import os
+
+secrets = st.secrets
+
+
+azure_api_key = secrets["azure"]["api_key"]
+os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
+
+
 def get_chain(assignment,predefined_rubrics,example):
         
         system_prompt = """
