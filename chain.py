@@ -26,7 +26,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         
         Context : {example}
         
-        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user did in the {assignment} and explain the mistakes in detail with soultions.
+        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user did in the assignment and explain the mistakes in detail with soultions.
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
