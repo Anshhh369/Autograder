@@ -41,7 +41,7 @@ def get_chain(assignment,predefined_rubrics,example):
         chain = LLMChain(llm=llm, prompt=prompt)
 
         if st.session_state.vector_store:
-        
+                
                 retriever = AzureAISearchRetriever(
                     content_key="assignment", 
                     top_k=1, 
