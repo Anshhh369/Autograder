@@ -7,6 +7,9 @@ from chain import get_chain,get_scores
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+    
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
 if "uploaded_file" not in st.session_state:
     st.session_state.uploaded_file = None
@@ -22,6 +25,8 @@ if "rubrics" not in st.session_state:
 
 if "example" not in st.session_state:
     st.session_state.example = None
+
+
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -69,6 +74,7 @@ if uploaded_file:
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": query})
 
+             st.session_state.chat_history = format_chat_history(st.session_state.messages)
     
             answer = get_scores(query)
         
