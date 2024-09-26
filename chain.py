@@ -66,7 +66,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
 def get_scores(query):
         
         chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.example,st.session_state.chat_history)
-        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store,"example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
+        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
                 answer = response['text']
