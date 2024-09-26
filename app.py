@@ -2,10 +2,23 @@ from document_processing import process_document,extract_answers
 import streamlit as st
 from vectordb import vector_db
 
-# if "vector_store" not in st.session_state:
-#     st.session_state.vector_store = None
-# if "uploaded_file" not in st.session_state:
-#     st.session_state.uploaded_file = None
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if "uploaded_file" not in st.session_state:
+    st.session_state.uploaded_file = None
+
+if "vector_store" not in st.session_state:
+    st.session_state.vector_store = None
+
+if "chain" not in st.session_state:
+    st.session_state.chain = None
+
+if "rubrics" not in st.session_state:
+    st.session_state.rubrics = None
+
+if "example" not in st.session_state:
+    st.session_state.example = None
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -16,10 +29,15 @@ pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
+st.session_state.rubrics = predefined_rubrics()
+
+st.session_state.example = example()
+
+
 # def chain():
 if uploaded_file:
 
-    # st.session_state.uploaded_file = uploaded_file
+    st.session_state.uploaded_file = uploaded_file
     
     # Read file content
     file_content = process_document(uploaded_file)
@@ -33,4 +51,32 @@ if uploaded_file:
     if file_content:
         
         vector_store = vector_db(file_content)
+
+
+        # Display chat messages from history on app rerun
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+                                
+        if query := st.chat_input("Ask your question here"):
+            # Display user message in chat message container
+            with st.chat_message("user"):
+                st.markdown(query)
+            # Add user message to chat history
+            st.session_state.messages.append({"role": "user", "content": query})
+
+    
+            answer = get_scores(query)
+        
+            # Display assistant response in chat message container
+            with st.chat_message("assistant"):
+                st.markdown(answer)
+            # Add assistant response to chat history                
+            st.session_state.messages.append({"role": "assistant", "content": answer})
+                                        
+            # Button to clear chat messages
+            def clear_messages():
+                st.session_state.messages = []
+            st.button("Clear", help = "Click to clear the chat", on_click=clear_messages)
+
 
