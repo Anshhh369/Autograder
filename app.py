@@ -29,7 +29,7 @@ pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
-st.session_state.rubrics = predefined_rubrics()
+st.session_state.rubrics = rubrics()
 
 st.session_state.example = example()
 
