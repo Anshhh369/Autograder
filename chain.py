@@ -55,7 +55,7 @@ def get_chain(assignment,predefined_rubrics,example):
 
                 return st.session_state.chain
 
-def get_scores():
+def get_scores(query):
         
         chains = get_chain(st.session_state.vector_store,st.session_state.predefined_rubrics,st.session_state.example)
         response = chains.invoke({"input": query, "assignment": st.session_state.vector_store,"example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics})
