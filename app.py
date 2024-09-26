@@ -1,4 +1,4 @@
-from document_processing import process_document,extract_answers 
+from document_processing import process_document
 import streamlit as st
 from vectordb import vector_db
 from rubrics import rubrics
