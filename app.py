@@ -55,7 +55,7 @@ if uploaded_file:
     Extract answers using regex patterns
     extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
 
-    # st.write("Extracted Answers:", extracted_answers)
+    st.write("Extracted Answers:", extracted_answers)
 
     
     if st.session_state.uploaded_file:
