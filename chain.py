@@ -16,10 +16,10 @@ def get_chain(assignment,predefined_rubrics,example):
         
         system_prompt = """
         
-        You are an expert grader. Your job is to grade students assignment based on predifined rubrics.
+        You are an expert grader. Your job is to grade students assignment based on predefined rubrics.
 
         Start by greeting the user respectfully, collect the name of the user.
-        The user has already uploaded {assignment} for grading, consider that and refer to {predifined_rubrics} for assigning scores accordingly.
+        The user has already uploaded {assignment} for grading, consider that and refer to {predefined_rubrics} for assigning scores accordingly.
         Next, make sure you refer the example given below in context before generating the output and use the same format in the output as given in the example.
         
         Context : {example}
@@ -57,7 +57,7 @@ def get_chain(assignment,predefined_rubrics,example):
 
 def get_scores(query):
         
-        chains = get_chain(st.session_state.vector_store,st.session_state.predefined_rubrics,st.session_state.example)
+        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.example)
         response = chains.invoke({"input": query, "assignment": st.session_state.vector_store,"example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics})
         
         try:
