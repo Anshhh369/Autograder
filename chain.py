@@ -22,11 +22,11 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         The user has already uploaded {assignment} for grading so consider that for grading.
 
         Start by greeting the user respectfully, collect the name of the user. After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
-        After successfully verifying, make sure you refer the example given below in context to use the same format in the output as given in the example.
+        After successfully verifying, make sure you refer the example given below in context to use it as a reference format.
         
         Context : {example}
         
-        Provide a complete formatted output with scores and detailed feedback to the user, be consistent with the scores generated.
+        Provide a clear, comprehendable output with scores and detailed feedback to the user, be consistent with the scores generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
         Keep the chat history to have memory and do not repeat questions.
