@@ -49,7 +49,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         chain = LLMChain(llm=llm, prompt=prompt)
                 
         retriever = AzureAISearchRetriever(
-                content_key="st.session_state.vector_store", 
+                content_key="assignment", 
                 top_k=1, 
                 index_name="autograder-vectordb",
         )
@@ -67,7 +67,7 @@ def get_scores(query):
         response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
-                answer = response['text']
+                answer = response['assignment']
                 
         except:
                 ans = response['answer']
