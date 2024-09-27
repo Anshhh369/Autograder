@@ -19,14 +19,14 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         
         You are an expert grader. Your job is to grade students assignment based on predefined rubrics.
 
-        The user has already uploaded {assignment} for grading so consider that for grading.
+        The user has already uploaded {assignment} so consider that for grading.
 
         Start by greeting the user respectfully, collect the name of the user. After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
         Move to the next step only after successfully verifying. Next, refer the example given below in context and use only it's format for reference.
         
         Context : {example}
         
-        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user did and explain them in detail with soultions.
+        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user made in the {assignment} and explain them in detail with soultions.
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
@@ -51,7 +51,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         if st.session_state.vector_store:
                 
                 retriever = AzureAISearchRetriever(
-                    content_key="assignment", 
+                    content_key="st.session_state.vector_store", 
                     top_k=1, 
                     index_name="autograder-vectordb",
                 )
