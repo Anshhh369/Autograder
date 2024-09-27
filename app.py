@@ -51,7 +51,7 @@ if uploaded_file:
     st.session_state.uploaded_file = process_document(uploaded_file)
 
     # Extract answers using regex patterns
-    extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
+    extracted_answers = extract_answers(uploaded_file,pattern)
 
     st.write("Extracted Answers:", extracted_answers)
    
