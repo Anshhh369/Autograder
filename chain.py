@@ -50,7 +50,12 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
 
         if st.session_state.vector_store:
                 
-                retriever = assignment.as_retriever(search_type="hybrid")
+                retriever = AzureAISearchRetriever(
+                        content_key="assignment", 
+                        top_k=1, 
+                        index_name="autorubrics-vectordb",
+                )
+
                 chain = create_retrieval_chain(retriever, chain)
 
         st.session_state.chat_active = True
