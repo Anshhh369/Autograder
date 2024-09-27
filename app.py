@@ -48,23 +48,19 @@ if uploaded_file:
 
     
     # Read file content
-    file_content = process_document(uploaded_file)
-
-    st.session_state.uploaded_file = file_content
+    st.session_state.uploaded_file = process_document(uploaded_file)
 
     # Extract answers using regex patterns
-    extracted_answers = extract_answers(uploaded_file,pattern)
+    extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
 
     st.write("Extracted Answers:", extracted_answers)
+   
+    st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
 
-    
-    if st.session_state.uploaded_file:
+    st.write("Assignment Uploaded Successfully")
+
+    if st.session_state.vector_store:
         
-        st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
-
-        st.write("Assignment Uploaded Successfully")
-
-
         # Display chat messages from history on app rerun
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
