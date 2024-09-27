@@ -26,7 +26,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         
         Context : {example}
         
-        Go through each question and answer in the assignment, highlight the mistakes that user made and explain them in detail with soultions. Only after previous step, provide a clear, comprehensable output to the user with scores and detailed feedback. 
+        Go through each question and answer in the assignment, highlight the mistakes that user made and explain them in detail with soultions. Only after previous step, provide a clear and comprehensable output to the user with scores and detailed feedback. 
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
@@ -49,6 +49,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         chain = LLMChain(llm=llm, prompt=prompt)
 
         if st.session_state.vector_store:
+                
                 retriever = AzureAISearchRetriever(
                         content_key="assignment", 
                         top_k=1, 
