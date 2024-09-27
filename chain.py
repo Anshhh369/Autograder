@@ -70,7 +70,7 @@ def get_scores(query):
         response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
-                answer = respons['text']
+                answer = response['text']
                 
         except:
                 ans = response['answer']
