@@ -76,5 +76,6 @@ def get_scores(query):
                 ans = response['answer']
                 answer = ans['text']
               
+        
         return answer
 
