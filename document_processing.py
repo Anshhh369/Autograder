@@ -7,7 +7,7 @@ import tempfile
 import os.path
 import pathlib
 import re
-
+import streamlit as st
 
 file_details = {"filename": st.session_state.uploaded_file.name, "filetype": st.session_state.uploaded_file.type}
     
