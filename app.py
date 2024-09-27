@@ -36,7 +36,7 @@ st.title("Automatic Grading System")
 pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 
 # File uploader
-uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
+st.session_state.uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
 st.session_state.rubrics = rubrics()
 
@@ -44,11 +44,11 @@ st.session_state.example = example()
 
 
 # def chain():
-if uploaded_file:
+if st.session_state.uploaded_file:
 
     
     # Read file content
-    st.session_state.uploaded_file = process_document(uploaded_file)
+    st.session_state.uploaded_file = process_document(st.session_state.uploaded_file)
 
     # Extract answers using regex patterns
     extracted_answers = extract_answers(st.session_state.uploaded_file,pattern)
