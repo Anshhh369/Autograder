@@ -49,7 +49,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         chain = LLMChain(llm=llm, prompt=prompt)
                 
         retriever = AzureAISearchRetriever(
-                content_key="assignment", 
+                content_key="st.session_state.vector_store", 
                 top_k=1, 
                 index_name="autograder-vectordb",
         )
