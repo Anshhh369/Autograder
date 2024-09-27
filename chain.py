@@ -46,7 +46,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         model_name = "gpt-4o"
         llm = ChatOpenAI(model_name=model_name)
 
-        chn = LLMChain(llm=llm, prompt=prompt)
+        chain = LLMChain(llm=llm, prompt=prompt)
 
         if st.session_state.vector_store:
                 
@@ -56,11 +56,11 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
                         index_name="autorubrics-vectordb",
                 )
 
-                chain = create_retrieval_chain(retriever, chn)
+                retrieval_chain = create_retrieval_chain(retriever, chain)
 
         st.session_state.chat_active = True
 
-        st.session_state.chain = chain
+        st.session_state.chain = retrieval_chain
 
         return st.session_state.chain
 
