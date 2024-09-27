@@ -26,7 +26,7 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
         
         Context : {example}
         
-        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user made in the {assignment} and explain them in detail with soultions.
+        Provide a clear, comprehensable output with scores and detailed feedback to the user, highlight the mistakes that user made in the assignment and explain them in detail with soultions.
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
@@ -67,12 +67,11 @@ def get_scores(query):
         response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "example" : st.session_state.example, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
-                ans = response['answer']
-                answer = ans['text']
+                answer = respons['text']
                 
         except:
-                # ans = response['answer']
-                answer = response['assignment']
+                ans = response['answer']
+                answer = ans['text']
               
         return answer
 
