@@ -45,7 +45,6 @@ def get_chain(assignment,predefined_rubrics,chat_history):
 
         chain = LLMChain(llm = llm,prompt = prompt)
 
-     
         retriever = AzureAISearchRetriever(
                 content_key="predefined_rubrics", 
                 top_k=1, 
@@ -56,7 +55,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
 
         st.session_state.chat_active = True
 
-        st.session_state.chain = chain
+        st.session_state.chain = retrieval_chain
 
         return st.session_state.chain
 
