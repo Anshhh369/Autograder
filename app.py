@@ -54,7 +54,7 @@ if uploaded_file:
     # Extract answers using regex patterns
     st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
 
-    st.write("Extracted Answers:", extracted_answers)
+    # st.write("Extracted Answers:", extracted_answers)
    
     st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
 
