@@ -1,6 +1,6 @@
 def example():
 
-  example = """
+  context = """
 
   Understanding Data - Assignment 1 Evaluation
 
@@ -104,4 +104,4 @@ def example():
 
   """
 
-  return example
+  return context
