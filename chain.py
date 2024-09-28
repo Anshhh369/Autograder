@@ -4,6 +4,7 @@ from langchain.prompts.chat import ChatPromptTemplate
 from langchain_community.retrievers import AzureAISearchRetriever
 import streamlit as st
 import os
+from langchain import hub
 
 secrets = st.secrets
 
@@ -13,7 +14,7 @@ os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
 
-def get_chain(assignment,predefined_rubrics,example,chat_history):
+def get_chain(assignment,predefined_rubrics,context,chat_history):
         
         system_prompt = """
         
@@ -45,8 +46,9 @@ def get_chain(assignment,predefined_rubrics,example,chat_history):
 
         model_name = "gpt-4o"
         llm = ChatOpenAI(model_name=model_name)
+        
 
-        chain = LLMChain(llm=llm, prompt=prompt)
+        chain = LLMChain(llm = llm,prompt = prompt)
 
         if st.session_state.vector_store:
                 
