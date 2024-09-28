@@ -20,18 +20,16 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         
         You are an expert grader. Your job is to grade students assignment based on predefined rubrics.
 
-        The user has already uploaded {assignment} so consider that for grading.
-
-        Start by greeting the user respectfully, collect the name of the user. After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
-        Move to the next step only after successfully verifying. 
-        Next step is to go through each question and answer in the assignment, highlight the mistakes that user made and explain them in detail with soultions.
+        Start by greeting the user respectfully, collect the name of the user. 
+        After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
+        Move to the next step only after successfully verifying.
+        Next step is to go through each question and answer in the {assignment}, highlight the mistakes that user made and explain them in detail with soultions.
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
         Keep the chat history to have memory and do not repeat questions.
         
         chat history: {chat_history}
-        
         
         """
 
@@ -48,7 +46,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         chain = LLMChain(llm = llm,prompt = prompt)
 
         if st.session_state.vector_store:
-                
+     
                 retriever = AzureAISearchRetriever(
                         content_key="assignment", 
                         top_k=1, 
