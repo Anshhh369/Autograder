@@ -14,7 +14,7 @@ os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
 
-def get_chain(assignment,predefined_rubrics,context,chat_history):
+def get_chain(assignment,predefined_rubrics,chat_history):
         
         system_prompt = """
         
@@ -23,11 +23,8 @@ def get_chain(assignment,predefined_rubrics,context,chat_history):
         The user has already uploaded {assignment} so consider that for grading.
 
         Start by greeting the user respectfully, collect the name of the user. After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
-        Move to the next step only after successfully verifying. Next, refer the context given below in context and use only it's format for reference.
-        
-        Context : {context}
-        
-        Go through each question and answer in the assignment, highlight the mistakes that user made and explain them in detail with soultions. Only after previous step, provide a clear and comprehensable output to the user with scores and detailed feedback. 
+        Move to the next step only after successfully verifying. 
+        Next step is to go through each question and answer in the {assignment}, highlight the mistakes that user made and explain them in detail with soultions.
         Be consistent with the scores and feedback generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
@@ -42,7 +39,7 @@ def get_chain(assignment,predefined_rubrics,context,chat_history):
                 [("system", system_prompt), ("human", "{input}")]
         )
 
-        prompt.format_messages(input = "query", assignment = "st.session_state.vector_store", context = "st.session_state.context", predefined_rubrics = "st.session_state.rubrics", chat_history = "st.session_state.chat_history")
+        prompt.format_messages(input = "query", assignment = "st.session_state.vector_store", predefined_rubrics = "st.session_state.rubrics", chat_history = "st.session_state.chat_history")
 
         model_name = "gpt-4o"
         llm = ChatOpenAI(model_name=model_name)
@@ -68,8 +65,8 @@ def get_chain(assignment,predefined_rubrics,context,chat_history):
 
 def get_scores(query):
         
-        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.context,st.session_state.chat_history)
-        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "context" : st.session_state.context, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
+        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.chat_history)
+        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
                 answer = response['text']
