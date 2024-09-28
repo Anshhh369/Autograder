@@ -15,8 +15,8 @@ if "chat_history" not in st.session_state:
 if "uploaded_file" not in st.session_state:
     st.session_state.uploaded_file = None
 
-if "vector_store" not in st.session_state:
-    st.session_state.vector_store = None
+# if "vector_store" not in st.session_state:
+#     st.session_state.vector_store = None
 
 if "chain" not in st.session_state:
     st.session_state.chain = None
@@ -56,11 +56,11 @@ if uploaded_file:
 
     # st.write("Extracted Answers:", extracted_answers)
    
-    st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
+    # st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
 
     st.write("Assignment Uploaded Successfully")
 
-    if st.session_state.vector_store:
+    if st.session_state.extracted_answers:
         
         # Display chat messages from history on app rerun
         for message in st.session_state.messages:
