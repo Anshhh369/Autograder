@@ -23,7 +23,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         Start by greeting the user respectfully, collect the name of the user. 
         After that verify predefined_rubrics with the user by displaying whole exact rubrics to them clearly.
         Move to the next step only after successfully verifying.
-        Next step is to grade the assignment and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
+        Next step is to grade the assignment, go through each question/answers in the {assignment} and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
         Be consistent with the scores and feedbacks generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
 
@@ -37,7 +37,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
                 [("system", system_prompt), ("human", "{input}")]
         )
 
-        prompt.format_messages(input = "query", assignment = "st.session_state.vector_store", predefined_rubrics = "st.session_state.rubrics", chat_history = "st.session_state.chat_history")
+        prompt.format_messages(input = "query", assignment = "st.session_state.extracted_answers", predefined_rubrics = "st.session_state.rubrics", chat_history = "st.session_state.chat_history")
 
         model_name = "gpt-4o"
         llm = ChatOpenAI(model_name=model_name)
@@ -63,8 +63,8 @@ def get_chain(assignment,predefined_rubrics,chat_history):
 
 def get_scores(query):
         
-        chains = get_chain(st.session_state.vector_store,st.session_state.rubrics,st.session_state.chat_history)
-        response = chains.invoke({"input": query, "assignment": st.session_state.vector_store, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
+        chains = get_chain(st.session_state.extracted_answers,st.session_state.rubrics,st.session_state.chat_history)
+        response = chains.invoke({"input": query, "assignment": st.session_state.extracted_answers, "predefined_rubrics": st.session_state.rubrics,"chat_history": st.session_state.chat_history})
         
         try:
                 answer = response['text']
