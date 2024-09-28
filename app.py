@@ -27,7 +27,8 @@ if "rubrics" not in st.session_state:
 if "context" not in st.session_state:
     st.session_state.context = None
 
-
+if "extracted_answers" not in st.session_state:
+    st.session_state.extracted_answers = None
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -51,7 +52,7 @@ if uploaded_file:
     st.session_state.uploaded_file = process_document(uploaded_file)
 
     # Extract answers using regex patterns
-    extracted_answers = extract_answers(uploaded_file,pattern)
+    st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
 
     st.write("Extracted Answers:", extracted_answers)
    
