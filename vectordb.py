@@ -15,12 +15,12 @@ os.environ["AZURE_API_KEY"] = azure_api_key
 vector_store_address = "https://ragservices.search.windows.net"
 vector_store_password = azure_api_key
 
-index_name = "autograder-vectordb"
+index_name = "autorubrics-vectordb"
 model = "text-embedding-ada-002"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
-def vector_db(document):
+def vector_db():
   
   vector_store = AzureSearch(
     azure_search_endpoint=vector_store_address,
@@ -32,7 +32,7 @@ def vector_db(document):
     additional_search_client_options={"retry_total": 4},
   )
   
-  db = vector_store.add_documents(documents=document)
+  # db = vector_store.add_documents(documents=document)
 
-  return db
+  return vector_store
         
