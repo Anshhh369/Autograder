@@ -45,15 +45,14 @@ def get_chain(assignment,predefined_rubrics,chat_history):
 
         chain = LLMChain(llm = llm,prompt = prompt)
 
-        if st.session_state.vector_store:
      
-                retriever = AzureAISearchRetriever(
-                        content_key="predefined_rubrics", 
-                        top_k=1, 
-                        index_name="autorubrics-vectordb",
-                )
-
-                retrieval_chain = create_retrieval_chain(retriever, chain)
+        retriever = AzureAISearchRetriever(
+                content_key="predefined_rubrics", 
+                top_k=1, 
+                index_name="autorubrics-vectordb",
+        )
+        
+        retrieval_chain = create_retrieval_chain(retriever, chain)
 
         st.session_state.chat_active = True
 
