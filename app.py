@@ -24,8 +24,8 @@ if "chain" not in st.session_state:
 if "rubrics" not in st.session_state:
     st.session_state.rubrics = None
 
-if "example" not in st.session_state:
-    st.session_state.example = None
+if "context" not in st.session_state:
+    st.session_state.context = None
 
 
 
@@ -40,7 +40,7 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 
 st.session_state.rubrics = rubrics()
 
-st.session_state.example = example()
+st.session_state.context = example()
 
 
 # def chain():
