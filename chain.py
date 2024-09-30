@@ -14,18 +14,7 @@ os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
 
-retriever = AzureAISearchRetriever(
-                        content_key="content", 
-                        top_k=1, 
-                        index_name="predefined_rubrics",
-                )
-# Define a query to retrieve the specific document (adjust query accordingly)
-query = "rurbics"  # Example: "rubric 101"
 
-# Retrieve relevant documents from the index
-st.session_state.rubrics = retriever._get_relevant_documents(query)
-if st.session_state.rubrics:
-        st.write("rubrics:", st.session_state.rubrics[0])
 
 def get_chain(assignment,predefined_rubrics,chat_history):
         
