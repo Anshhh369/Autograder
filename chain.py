@@ -13,6 +13,21 @@ azure_api_key = secrets["azure"]["api_key"]
 os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
+if "rubrics" not in st.session_state:
+    st.session_state.rubrics = None
+
+retriever = AzureAISearchRetriever(
+                        content_key="content", 
+                        top_k=1, 
+                        index_name="predefined_rubrics",
+                )
+# Define a query to retrieve the specific document (adjust query accordingly)
+query = "rurbics"  # Example: "rubric 101"
+
+# Retrieve relevant documents from the index
+st.session_state.rubrics = retriever._get_relevant_documents(query)
+if st.session_state.rubrics:
+        st.write("rubrics:", st.session_state.rubrics[0])
 
 def get_chain(assignment,predefined_rubrics,chat_history):
         
@@ -21,7 +36,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         You are an expert grader, your name is AutoGrader. Your job is to grade {assignment} based on {predefined_rubrics}.
 
         Start by greeting the user respectfully, collect the name of the user. 
-        After that verify {predefined_rubrics} with the user by displaying whole exact rubrics to them clearly.
+        After that verify {predefined_rubrics} with the user by displaying whole exact rubric to them clearly.
         Move to the next step only after successfully verifying.
         Next step is to grade the assignment, go through the {assignment} and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
         Be consistent with the scores and feedbacks generated.
@@ -43,17 +58,11 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         llm = ChatOpenAI(model_name=model_name)
         
 
-        st.session_state.chain = LLMChain(llm = llm,prompt = prompt)
+        chain = LLMChain(llm = llm,prompt = prompt)
 
-        if st.session_state.rubrics:
-                retriever = AzureAISearchRetriever(
-                        content_key="content", 
-                        top_k=1, 
-                        index_name="predefined_rubrics",
-                )
-        
-                retrieval_chain = create_retrieval_chain(retriever, chain)
-                st.session_state.chain = retrieval_chain
+                
+        retrieval_chain = create_retrieval_chain(retriever, chain)
+        st.session_state.chain = retrieval_chain
 
         st.session_state.chat_active = True
 
