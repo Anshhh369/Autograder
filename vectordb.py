@@ -31,14 +31,16 @@ def vector_db():
     # Configure max retries for the Azure client
     additional_search_client_options={"retry_total": 4},
   )
-  
-  # # Perform the search on the AzureSearch vector store
-  # search_results = vector_store.search("content")
-  
-  # # Assuming the 'results' field contains the documents in the search response
-  # documents = search_results["results"]  # Extract documents
 
-  st.write("rubrics: ", vector_store)
+  query = ("rubrics")
+  query_embedding = OpenAIEmbeddings.embed_query(query)
+  
+  search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
+  
+  for result in search_results:
+    documents = result["content"]
 
-  return vector_store
+    st.write("rubrics: ", documents)
+
+  return documents
         
