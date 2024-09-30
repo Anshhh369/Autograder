@@ -38,6 +38,7 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 
 st.session_state.context = example()
 
+st.session_state.rubrics = vector_db()
 
 # def chain():
 if uploaded_file:
