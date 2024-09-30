@@ -4,7 +4,7 @@ from langchain_community.vectorstores.azuresearch import AzureSearch
 from langchain_community.retrievers import AzureAISearchRetriever
 from langchain_community.retrievers.azure_ai_search import AzureCognitiveSearchRetriever
 from langchain_openai import OpenAIEmbeddings
-
+from azure.search.documents import SearchClient
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
@@ -36,12 +36,8 @@ def vector_db():
   # Retrieve relevant documents from the index
   rubrics = retriever.get_relevant_documents(query)
 
-  for rubric in rubrics:
-    
-    r = rubric.page_content
-
   # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {r}")
+  st.write(f"Retrieved rubrics: {rubrics}")
 
   return r
         
