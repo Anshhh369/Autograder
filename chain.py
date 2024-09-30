@@ -46,9 +46,9 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         chain = LLMChain(llm = llm,prompt = prompt)
 
         retriever = AzureAISearchRetriever(
-                content_key="predefined_rubrics", 
+                content_key="content", 
                 top_k=1, 
-                index_name="autorubrics-vectordb",
+                index_name="predefined_rubrics",
         )
         
         retrieval_chain = create_retrieval_chain(retriever, chain)
