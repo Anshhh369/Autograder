@@ -21,9 +21,6 @@ if "uploaded_file" not in st.session_state:
 if "chain" not in st.session_state:
     st.session_state.chain = None
 
-if "rubrics" not in st.session_state:
-    st.session_state.rubrics = None
-
 if "context" not in st.session_state:
     st.session_state.context = None
 
@@ -39,8 +36,6 @@ pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 # File uploader
 uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
 
-st.session_state.rubrics = vector_db()
-
 st.session_state.context = example()
 
 
@@ -53,10 +48,6 @@ if uploaded_file:
 
     # Extract answers using regex patterns
     st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
-
-    # st.write("Extracted Answers:", extracted_answers)
-   
-    # st.session_state.vector_store = vector_db(st.session_state.uploaded_file)
 
     st.write("Assignment Uploaded Successfully")
 
