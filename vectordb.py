@@ -5,6 +5,7 @@ from langchain_community.retrievers import AzureAISearchRetriever
 from langchain_community.retrievers.azure_ai_search import AzureCognitiveSearchRetriever
 from langchain_openai import OpenAIEmbeddings
 from azure.search.documents import SearchClient
+from azure.core.credentials import AzureKeyCredential
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
@@ -45,7 +46,7 @@ def vector_db():
 
   search_client = SearchClient(endpoint="vector_store_address",
                               index_name="predefined_rubrics",
-                              credential="azure_api_key")
+                              credential=AzureKeyCredential(azure_api_key))
   
 
   # Retrieve the document
