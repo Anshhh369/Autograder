@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 from langchain_community.vectorstores.azuresearch import AzureSearch
+from langchain_community.retrievers import AzureAISearchRetriever
 from langchain_openai import OpenAIEmbeddings
 
 
