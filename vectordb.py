@@ -32,11 +32,11 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
   
-  # Perform the search on the AzureSearch vector store
-  search_results = vector_store.search("content")
+  # # Perform the search on the AzureSearch vector store
+  # search_results = vector_store.search("content")
   
-  # Assuming the 'results' field contains the documents in the search response
-  documents = search_results["results"]  # Extract documents
+  # # Assuming the 'results' field contains the documents in the search response
+  # documents = search_results["results"]  # Extract documents
 
-  return documents
+  return vector_store
         
