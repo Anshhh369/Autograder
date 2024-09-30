@@ -36,7 +36,7 @@ def vector_db():
   # Retrieve relevant documents from the index
   rubrics = retriever.get_relevant_documents(query)
 
-  rubric = rubrics["page_content"]
+  rubric = rubrics[0]
 
   # Log the list of retrieved documents for debugging
   st.write(f"Retrieved rubrics: {rubric}")
