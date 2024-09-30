@@ -31,7 +31,7 @@ def vector_db():
     index_name="predefined_rubrics"
   )
 
-  query = "content" 
+  query = "Ansh_Rubric" 
 
   # Retrieve relevant documents from the index
   rubrics = retriever.get_relevant_documents(query)
