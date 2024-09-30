@@ -32,15 +32,16 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-  query = ("rubrics")
-  query_embedding = OpenAIEmbeddings.embed_query(query)
+  if vector_stor:
+    query = ("what is the final generated rubrics?")
+    query_embedding = OpenAIEmbeddings.embed_query(query)
   
-  search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
+    search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
   
-  for result in search_results:
-    documents = result["content"]
+    for result in search_results:
+      documents = result["content"]
 
-    st.write("rubrics: ", documents)
+      st.write("rubrics: ", documents)
 
   return documents
         
