@@ -31,7 +31,7 @@ def vector_db():
     index_name="predefined_rubrics"
   )
 
-  query = "Ansh_Rubric" 
+  query = "Technical Accuracy Problem Solving Coding Style Python concepts loops control flow data types" 
 
   # Retrieve relevant documents from the index
   rubrics = retriever.get_relevant_documents(query)
