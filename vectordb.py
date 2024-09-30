@@ -15,7 +15,7 @@ os.environ["AZURE_API_KEY"] = azure_api_key
 vector_store_address = "https://ragservices.search.windows.net"
 vector_store_password = azure_api_key
 
-index_name = "autorubrics-vectordb"
+index_name = "predefined_rubrics"
 model = "text-embedding-ada-002"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
@@ -26,13 +26,17 @@ def vector_db():
     azure_search_endpoint=vector_store_address,
     azure_search_key=vector_store_password,
     index_name=index_name,
-    api_version = "2020-08-01",
+    api_version = "2023-11-01",
     embedding_function=OpenAIEmbeddings.embed_query,
     # Configure max retries for the Azure client
     additional_search_client_options={"retry_total": 4},
   )
   
-  # db = vector_store.add_documents(documents=document)
+  # Perform the search on the AzureSearch vector store
+  search_results = vector_store.search("content")
+  
+  # Assuming the 'results' field contains the documents in the search response
+  documents = search_results["results"]  # Extract documents
 
-  return vector_store
+  return documents
         
