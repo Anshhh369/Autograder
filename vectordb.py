@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from langchain_community.vectorstores.azuresearch import AzureSearch
 from langchain_community.retrievers import AzureAISearchRetriever
+from langchain_community.retrievers.azure_ai_search import AzureCognitiveSearchRetriever
 from langchain_openai import OpenAIEmbeddings
 
 
@@ -33,10 +34,10 @@ def vector_db():
   #   additional_search_client_options={"retry_total": 4},
   # )
 
-  retriever = AzureAISearchRetriever(
+  retriever = AzureCognitiveSearchRetriever(
     content_key="content", 
     top_k=1, 
-    index_name="predefined_rubrics",
+    index_name="predefined_rubrics"
   )
 
   query = "rubrics" 
