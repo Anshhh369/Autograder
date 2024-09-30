@@ -32,17 +32,16 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-  if vector_store:
-    query = ("rubrics")
-    query_embedding = OpenAIEmbeddings.embed_query(query)
-  
-    search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
+  search_results = AzureAISearchRetriever(
+    content_key="content", 
+    top_k=1, 
+    index_name="predefined_rubrics",
+  )
+
     
-    if search_results:
-      for result in search_results:
-        documents = result["content"]
+  if search_results:
         
-        st.write("rubrics: ", documents)
+        st.write("rubrics: ", search_results)
   
-  return documents
+  return search_results
         
