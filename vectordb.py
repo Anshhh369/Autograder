@@ -37,6 +37,7 @@ def vector_db():
     content_key="content", 
     top_k=1, 
     index_name="predefined_rubrics",
+    api_key=azure_api_key
   )
 
     
