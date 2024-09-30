@@ -34,7 +34,7 @@ def vector_db():
   #   additional_search_client_options={"retry_total": 4},
   # )
 
-  retriever = AzureCognitiveSearchRetriever(
+  retriever = AzureAISearchRetriever(
     content_key="content", 
     top_k=1, 
     index_name="predefined_rubrics"
@@ -43,7 +43,7 @@ def vector_db():
   query = "rubrics" 
 
   # Retrieve relevant documents from the index
-  rubrics = retriever._get_relevant_documents(query)
+  rubrics = retriever.get_relevant_documents(query)
   if rubrics:
     st.write("rubrics:", rubrics[0])
     
