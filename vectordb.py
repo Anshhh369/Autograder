@@ -33,7 +33,7 @@ def vector_db():
   )
 
   if vector_store:
-    query = ("what is the final generated rubrics?")
+    query = ("predefined_rubrics")
     query_embedding = OpenAIEmbeddings.embed_query(query)
   
     search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
