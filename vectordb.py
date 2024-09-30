@@ -40,7 +40,7 @@ def vector_db():
     document_id = r["id"]
 
   # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {document_id}")
+  st.write(f"Retrieved rubrics: {rubrics}")
 
   return r
         
