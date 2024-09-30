@@ -24,15 +24,6 @@ OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
 def vector_db():
   
-  # vector_store = AzureSearch(
-  #   azure_search_endpoint=vector_store_address,
-  #   azure_search_key=vector_store_password,
-  #   index_name=index_name,
-  #   api_version = "2023-11-01",
-  #   embedding_function=OpenAIEmbeddings.embed_query,
-  #   # Configure max retries for the Azure client
-  #   additional_search_client_options={"retry_total": 4},
-  # )
 
   retriever = AzureAISearchRetriever(
     content_key="content", 
@@ -40,7 +31,7 @@ def vector_db():
     index_name="predefined_rubrics"
   )
 
-  query = "Ansh_Rubric" 
+  query = "content" 
 
   # Retrieve relevant documents from the index
   rubrics = retriever.get_relevant_documents(query)
