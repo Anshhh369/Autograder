@@ -37,11 +37,21 @@ def vector_db():
   rubrics = retriever.get_relevant_documents(query)
 
   for rubric in rubrics:
-    id = rubric.metadata.get('id')
+    document_id = rubric.metadata.get('id')
 
 
   # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {id}")
+  st.write(f"Retrieved rubrics: {document_id}")
+
+  # Retrieve the document
+  retrieved_document = retriever.get_document(document_id)
+
+  # Extract and display the content
+  if retrieved_document:
+    content = retrieved_document["page_content"]  # Adjust based on the actual field name
+    st.write(f"Document Content: {content}")
+  else:
+    st.write("Document not found.")
 
   return rubrics
         
