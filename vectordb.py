@@ -43,6 +43,6 @@ def vector_db():
         documents = result["content"]
         
         st.write("rubrics: ", documents)
-
+  
   return documents
         
