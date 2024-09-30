@@ -33,17 +33,18 @@ def vector_db():
   #   additional_search_client_options={"retry_total": 4},
   # )
 
-  vector_store = AzureAISearchRetriever(
+  retriever = AzureAISearchRetriever(
     content_key="content", 
     top_k=1, 
     index_name="predefined_rubrics",
-    api_key=azure_api_key
   )
 
+  query = "rubrics" 
+
+  # Retrieve relevant documents from the index
+  rubrics = retriever._get_relevant_documents(query)
+  if rubrics:
+    st.write("rubrics:", rubrics[0])
     
-  if vector_store:
-        
-        st.write("rubrics: ", search_results)
-  
-  return search_results
+  return rubrics[0]
         
