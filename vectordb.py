@@ -37,11 +37,12 @@ def vector_db():
     query_embedding = OpenAIEmbeddings.embed_query(query)
   
     search_results = vector_store.similarity_search_by_vector(query_embedding, k=1, index=index_name)
-  
-    for result in search_results:
-      documents = result["content"]
-
-      st.write("rubrics: ", documents)
+    
+    if search_results:
+      for result in search_results:
+        documents = result["content"]
+        
+        st.write("rubrics: ", documents)
 
   return documents
         
