@@ -32,7 +32,7 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-  if vector_stor:
+  if vector_store:
     query = ("what is the final generated rubrics?")
     query_embedding = OpenAIEmbeddings.embed_query(query)
   
