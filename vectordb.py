@@ -38,5 +38,7 @@ def vector_db():
   # # Assuming the 'results' field contains the documents in the search response
   # documents = search_results["results"]  # Extract documents
 
+  st.write("rubrics: ", vector_store)
+
   return vector_store
         
