@@ -43,8 +43,13 @@ def vector_db():
   # Log the list of retrieved documents for debugging
   st.write(f"Retrieved rubrics: {document_id}")
 
+  search_client = SearchClient(endpoint="vector_store_address",
+                              index_name="predefined_rubrics",
+                              credential="azure_api_key")
+  
+
   # Retrieve the document
-  retrieved_document = retriever.get_document(document_id)
+  retrieved_document = search_client.get_document(document_id)
 
   # Extract and display the content
   if retrieved_document:
