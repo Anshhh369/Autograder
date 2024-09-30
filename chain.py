@@ -13,8 +13,6 @@ azure_api_key = secrets["azure"]["api_key"]
 os.environ["AZURE_AI_SEARCH_API_KEY"] = azure_api_key
 os.environ["AZURE_AI_SEARCH_SERVICE_NAME"] = "https://ragservices.search.windows.net"
 
-if "rubrics" not in st.session_state:
-    st.session_state.rubrics = None
 
 retriever = AzureAISearchRetriever(
                         content_key="content", 
