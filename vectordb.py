@@ -47,17 +47,27 @@ def vector_db():
   search_client = SearchClient(endpoint="vector_store_address",
                               index_name="predefined_rubrics",
                               credential=AzureKeyCredential(azure_api_key))
+
+  # Define a search query (e.g., based on a specific field or keyword)
+  query = "Technical Accuracy"  # Example search term
+
+  # Perform the search
+  results = search_client.search(query)
+  
+  # Extract and display the content of each result
+  for result in results:
+    st.write(f"Document Content: {result['page_content']}")  
   
 
-  # Retrieve the document
-  retrieved_document = search_client.get_document(document_id)
+  # # Retrieve the document
+  # retrieved_document = search_client.get_document(document_id)
 
-  # Extract and display the content
-  if retrieved_document:
-    content = retrieved_document["page_content"]  # Adjust based on the actual field name
-    st.write(f"Document Content: {content}")
-  else:
-    st.write("Document not found.")
+  # # Extract and display the content
+  # if retrieved_document:
+  #   content = retrieved_document["page_content"]  # Adjust based on the actual field name
+  #   st.write(f"Document Content: {content}")
+  # else:
+  #   st.write("Document not found.")
 
   return rubrics
         
