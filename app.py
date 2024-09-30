@@ -15,9 +15,9 @@ if "chat_history" not in st.session_state:
 if "uploaded_file" not in st.session_state:
     st.session_state.uploaded_file = None
 
-# if "vector_store" not in st.session_state:
-#     st.session_state.vector_store = None
-
+if "rubrics" not in st.session_state:
+    st.session_state.rubrics = None
+    
 if "chain" not in st.session_state:
     st.session_state.chain = None
 
