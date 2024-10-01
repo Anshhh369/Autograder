@@ -38,13 +38,24 @@ def vector_db():
   )
 
   if vector_store:
-    docs = vector_store.similarity_search(
-      query="Rubric",
-      k=1, 
-      search_type="similarity"
-    )
-    docs = docs[0].page_content
-    st.write("Assignment: ", docs)
+    # Initialize the Search Client
+    search_client = SearchClient(endpoint=vector_store_address,
+                                 index_name=index_name,
+                                 credential=AzureKeyCredential(vector_store_password))
+
+
+    # document_id = "Ansh_Rubric"  # Adjust this as per your document's unique ID
+    result = search_client.get_document()
+    st.write(result)
+
+
+    # docs = vector_store.similarity_search(
+    #   query="Rubric",
+    #   k=1, 
+    #   search_type="similarity"
+    # )
+    # docs = docs[0].page_content
+    # st.write("Assignment: ", docs)
     
   return docs
         
