@@ -37,17 +37,9 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
+  st.write(vector_store)
+
   if vector_store:
-    # # Initialize the Search Client
-    # search_client = SearchClient(endpoint=vector_store_address,
-    #                              index_name=index_name,
-    #                              credential=AzureKeyCredential(vector_store_password))
-
-
-    # # document_id = "Ansh_Rubric"  # Adjust this as per your document's unique ID
-    # result = search_client.get_relevant_document()
-    # st.write(result)
-
 
     docs = vector_store.similarity_search(
       query="*",
