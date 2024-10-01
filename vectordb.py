@@ -42,11 +42,9 @@ def vector_db():
 
     docs = vector_store.similarity_search(
       query="*",
-      k=1, 
+      k=10, 
       search_type="similarity"
     )
-
-    st.write(docs)
     
     content = []
     for doc in docs:
