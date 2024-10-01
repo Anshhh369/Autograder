@@ -27,7 +27,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         Display and verify the name of the user as follows: user_name = 
         
         After that verify {predefined_rubrics} with the user by displaying whole exact {predefined_rubrics} to them clearly.
-        Only after successfully verifying, move to the next step.
+        Only after successfully verifying predefined_rubrics, move to the next step.
         Next step is to grade the assignment, go through the {assignment} and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
         Be consistent with the scores and feedbacks generated.
         Lastly, ask user if they want any modification or adjustments to the scores generated, if user says no then end the conversation.
