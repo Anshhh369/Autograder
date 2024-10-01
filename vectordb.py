@@ -6,6 +6,7 @@ from langchain_community.retrievers.azure_ai_search import AzureCognitiveSearchR
 from langchain_openai import OpenAIEmbeddings
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
+import re
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
