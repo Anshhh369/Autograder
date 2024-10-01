@@ -50,7 +50,7 @@ def vector_db():
 
 
     docs = vector_store.similarity_search(
-      query="Rubric =",
+      query="",
       k=1, 
       search_type="similarity"
     )
