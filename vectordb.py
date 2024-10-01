@@ -24,42 +24,15 @@ model = "text-embedding-ada-002"
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
 def vector_db():
-  
 
-  retriever = AzureAISearchRetriever(
-    content_key="content", 
-    top_k=1, 
-    index_name="predefined_rubrics"
-  )
+  docs = vector_store.similarity_search(
+                query="Assignment",
+                k=1, 
+                search_type="similarity"
+            )
 
-  query = "*" 
-
-  # Retrieve relevant documents from the index
-  rubrics = retriever.get_relevant_documents(query)
-
-  for rubric in rubrics:
-    document = rubric.metadata.get('content')
-    
-
-
-  # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {rubrics}")
-
-  # search_client = SearchClient(endpoint=vector_store_address,
-  #                             index_name="predefined_rubrics",
-  #                             credential=AzureKeyCredential(azure_api_key))
-
-  
-
-  # # Retrieve the document
-  # retrieved_document = search_client.get_document(document_id)
-
-  # # Extract and display the content
-  # if retrieved_document:
-  #   content = retrieved_document["content"]  # Adjust based on the actual field name
-  #   st.write(f"Document Content: {content}")
-  # else:
-  #   st.write("Document not found.")
+            docs = docs[0].page_content
+            st.write("Assignment: ", docs)
 
   return rubrics
         
