@@ -42,7 +42,7 @@ def vector_db():
   if vector_store:
 
     docs = vector_store.similarity_search(
-      query="*",
+      query="(\w+)_Rubric\s*=",
       k=37, 
       search_type="similarity"
     )
@@ -52,15 +52,15 @@ def vector_db():
       document = doc.page_content
       content.append(document)
 
-    pattern = r"(\w+)_Rubric\s*="
+    # pattern = r""
 
-    for item in content:
-      search_result = re.search(pattern, item,re.DOTALL)
+    # for item in content:
+    #   search_result = re.search(pattern, item,re.DOTALL)
       
-      if search_result:
-        result = search_result.group(0)
+    #   if search_result:
+    #     result = search_result.group(0)
     
-    st.write("result: ",result)
+    st.write("result: ",content)
       
     
   return content
