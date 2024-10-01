@@ -29,7 +29,7 @@ def vector_db():
   retriever = AzureAISearchRetriever(
     content_key="content", 
     top_k=1, 
-    index_name="predefined_rubrics"
+    index_name="autorubrics-vectordb"
   )
 
   query = "*" 
