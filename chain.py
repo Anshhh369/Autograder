@@ -63,6 +63,8 @@ def get_scores(query):
         except:
                 ans = response['answer']
                 answer = ans['text']
+
+
               
         
         return answer
