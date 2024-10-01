@@ -56,7 +56,8 @@ def vector_db():
     
     if search_result:
       result = search_result.group(0)
-      st.write(result)
+      
+    st.write("result: "result)
       
     
   return content
