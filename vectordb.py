@@ -56,8 +56,9 @@ def vector_db():
     )
     for doc in docs:
       content = doc
-      docs.append(content)
-    st.write("Assignment: ", docs)
+      content.append(content)
+      
+    st.write("Content: ", content)
     
   return docs
         
