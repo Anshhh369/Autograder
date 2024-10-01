@@ -34,14 +34,14 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-  docs = vector_store.similarity_search(
-                query="rubrics",
-                k=1, 
-                search_type="similarity"
-            )
-
-            docs = docs.page_content
-            st.write("Assignment: ", docs)
+  if vector_store:
+    docs = vector_store.similarity_search(
+      query="rubrics",
+      k=1, 
+      search_type="similarity"
+    )
+    docs = docs.page_content
+    st.write("Assignment: ", docs)
 
   return docs
         
