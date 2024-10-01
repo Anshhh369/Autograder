@@ -53,11 +53,13 @@ def vector_db():
       content.append(document)
 
     pattern = r"(\w+)_Rubric\s*="
-    search_result = re.search(pattern, content,re.DOTALL)
-    
-    if search_result:
-      result = search_result.group(0)
+
+    for item in content:
+      search_result = re.search(pattern, item,re.DOTALL)
       
+      if search_result:
+        result = search_result.group(0)
+    
     st.write("result: ",result)
       
     
