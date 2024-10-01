@@ -38,11 +38,12 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-
-  if vector_store:
+  query = st.session_state.user_name
+  
+  if query:
 
     docs = vector_store.similarity_search(
-      query="*",
+      query=query,
       k=37, 
       search_type="similarity"
     )
@@ -61,7 +62,8 @@ def vector_db():
     #     result = search_result.group(0)
     
     st.write("result: ",content)
-      
-    
-  return content
+    return content
+
+  else:
+    return None
         
