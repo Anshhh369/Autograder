@@ -40,7 +40,7 @@ def vector_db():
                 search_type="similarity"
             )
 
-            docs = docs[0].page_content
+            docs = docs.page_content
             st.write("Assignment: ", docs)
 
   return docs
