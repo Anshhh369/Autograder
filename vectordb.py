@@ -51,7 +51,6 @@ def vector_db():
       document = doc.page_content
       content.append(document)
       
-  st.write("Content: ", content)
     
   return content
         
