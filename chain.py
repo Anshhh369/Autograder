@@ -24,7 +24,9 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         You are an expert grader, your name is AutoGrader. Your job is to grade {assignment} based on {predefined_rubrics}.
 
         Start by greeting the user respectfully, collect the name of the user. Save the name of the user in a variable called user_name.
-        After that verify {predefined_rubrics} with the user by displaying whole exact rubric to them clearly.
+        In the next step first display the name of the user as follow: 
+        user_name = 
+        Next step is to verify {predefined_rubrics} with the user by displaying whole exact rubric to them clearly.
         Move to the next step only after successfully verifying.
         Next step is to grade the assignment, go through the {assignment} and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
         Be consistent with the scores and feedbacks generated.
