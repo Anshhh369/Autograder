@@ -45,7 +45,7 @@ def vector_db():
 
 
     # document_id = "Ansh_Rubric"  # Adjust this as per your document's unique ID
-    result = search_client.get_document()
+    result = vector_store.get_relevant_document()
     st.write(result)
 
 
