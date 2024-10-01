@@ -54,11 +54,12 @@ def vector_db():
       k=1, 
       search_type="similarity"
     )
+    content = []
     for doc in docs:
-      content = doc
-      content.append(content)
+      document = doc.page_content
+      content.append(document)
       
-    st.write("Content: ", content)
+  st.write("Content: ", content)
     
   return docs
         
