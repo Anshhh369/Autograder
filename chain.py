@@ -70,7 +70,7 @@ def get_scores(query):
         pattern = r"user_name\s*=\s*(\w+)"
         search_results = re.search(pattern, answer, re.DOTALL)
         if search_results:
-                result = search_results.group(0)
+                result = search_results.group(2)
 
                 st.write("result: ",result)
 
