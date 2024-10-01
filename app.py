@@ -76,7 +76,7 @@ if uploaded_file:
             pattern = r'user_name\s*=\s*"?(\w+)"?'
             search_results = re.search(pattern, answer, re.DOTALL)
             if search_results:
-                st.session_state.user_name = search_results.group(1).strip()
+                st.session_state.user_name = search_results.group(0)
 
                 if st.session_state.user_name:
                     st.session_state.rubrics = vector_db(st.session_state.user_name)
