@@ -69,12 +69,20 @@ if uploaded_file:
             st.session_state.chat_history = format_chat_history(st.session_state.messages)
     
             answer = get_scores(query)
+
+            pattern = r'user_name\s*=\s*"?(\w+)"?'
+            search_results = re.search(pattern, answer, re.DOTALL)
+            if search_results:
+                result = search_results.group(1).strip()
+
         
             # Display assistant response in chat message container
             with st.chat_message("assistant"):
                 st.markdown(answer)
             # Add assistant response to chat history                
             st.session_state.messages.append({"role": "assistant", "content": answer})
+
+            
                                         
             # Button to clear chat messages
             def clear_messages():
