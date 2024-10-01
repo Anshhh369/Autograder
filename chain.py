@@ -5,6 +5,7 @@ from langchain_community.retrievers import AzureAISearchRetriever
 import streamlit as st
 import os
 from langchain import hub
+import re
 
 secrets = st.secrets
 
@@ -63,6 +64,13 @@ def get_scores(query):
         except:
                 ans = response['answer']
                 answer = ans['text']
+
+        pattern = r"(\w+)_Rubric\s*="
+        search_results = re.search(pattern, answer, re.DOTALL)
+        if search_results:
+                result = search_results.group(0)
+
+                st.write("result: ",result)
 
 
               
