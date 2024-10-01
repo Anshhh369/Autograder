@@ -50,6 +50,13 @@ def vector_db():
     for doc in docs:
       document = doc.page_content
       content.append(document)
+
+    pattern = r"(\w+)_Rubric\s*="
+    search_result = re.search(pattern, content,re.DOTALL)
+    
+    if search_result:
+      result = search_result.group(0)
+      st.write(result)
       
     
   return content
