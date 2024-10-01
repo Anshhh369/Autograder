@@ -5,6 +5,7 @@ from rubrics import rubrics
 from example import example
 from chain import get_chain,get_scores
 from chat_history import format_chat_history
+import re
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
