@@ -68,14 +68,6 @@ def get_scores(query):
                 ans = response['answer']
                 answer = ans['text']
 
-        pattern = r'user_name\s*=\s*"?(\w+)"?'
-        search_results = re.search(pattern, answer, re.DOTALL)
-        if search_results:
-                result = search_results.group(1).strip()
-
-                st.write("result: ",result)
-
-
               
         
         return answer
