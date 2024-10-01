@@ -55,7 +55,7 @@ def vector_db():
 
   # Extract and display the content
   if retrieved_document:
-    content = retrieved_document["content"]  # Adjust based on the actual field name
+    content = retrieved_document["page_content"]  # Adjust based on the actual field name
     st.write(f"Document Content: {content}")
   else:
     st.write("Document not found.")
