@@ -41,7 +41,6 @@ uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "
 
 st.session_state.context = example()
 
-st.session_state.rubrics = vector_db()
 
 # def chain():
 if uploaded_file:
@@ -77,6 +76,9 @@ if uploaded_file:
             search_results = re.search(pattern, answer, re.DOTALL)
             if search_results:
                 st.session_state.user_name = search_results.group(1).strip()
+
+                if st.session_state.user_name:
+                    st.session_state.rubrics = vector_db(st.session_state.user_name)
 
         
             # Display assistant response in chat message container
