@@ -24,9 +24,18 @@ model = "text-embedding-ada-002"
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
 def vector_db():
+  vector_store = AzureSearch(
+    azure_search_endpoint=vector_store_address,
+    azure_search_key=vector_store_password,
+    index_name=index_name,
+    api_version = "2023-11-01",
+    embedding_function=OpenAIEmbeddings.embed_query,
+    # Configure max retries for the Azure client
+    additional_search_client_options={"retry_total": 4},
+  )
 
   docs = vector_store.similarity_search(
-                query="Assignment",
+                query="rubrics",
                 k=1, 
                 search_type="similarity"
             )
@@ -34,5 +43,5 @@ def vector_db():
             docs = docs[0].page_content
             st.write("Assignment: ", docs)
 
-  return rubrics
+  return docs
         
