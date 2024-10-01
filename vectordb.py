@@ -37,7 +37,6 @@ def vector_db():
     additional_search_client_options={"retry_total": 4},
   )
 
-  st.write(vector_store)
 
   if vector_store:
 
@@ -46,6 +45,9 @@ def vector_db():
       k=1, 
       search_type="similarity"
     )
+
+    st.write(docs)
+    
     content = []
     for doc in docs:
       document = doc.page_content
