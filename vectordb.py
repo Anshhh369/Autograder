@@ -38,7 +38,7 @@ def vector_db():
   rubrics = retriever.get_relevant_documents(query)
 
   for rubric in rubrics:
-    document = rubric.metadata.get('page_content')
+    document = rubric.metadata.get('content')
     
 
 
