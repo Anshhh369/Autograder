@@ -40,7 +40,7 @@ def vector_db():
   if vector_store:
     docs = vector_store.similarity_search(
       query="Ansh_Rubric",
-      k=1, 
+      k=3, 
       search_type="similarity"
     )
     docs = docs[0].page_content
