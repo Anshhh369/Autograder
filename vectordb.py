@@ -53,5 +53,5 @@ def vector_db():
       
   st.write("Content: ", content)
     
-  return docs
+  return content
         
