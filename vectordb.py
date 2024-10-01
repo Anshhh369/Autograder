@@ -38,27 +38,28 @@ def vector_db():
   rubrics = retriever.get_relevant_documents(query)
 
   for rubric in rubrics:
-    document_id = rubric.metadata.get('id')
+    document = rubric.metadata.get('page_content')
+    
 
 
   # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {document_id}")
+  st.write(f"Retrieved rubrics: {document}")
 
-  search_client = SearchClient(endpoint=vector_store_address,
-                              index_name="predefined_rubrics",
-                              credential=AzureKeyCredential(azure_api_key))
+  # search_client = SearchClient(endpoint=vector_store_address,
+  #                             index_name="predefined_rubrics",
+  #                             credential=AzureKeyCredential(azure_api_key))
 
   
 
-  # Retrieve the document
-  retrieved_document = search_client.get_document(document_id)
+  # # Retrieve the document
+  # retrieved_document = search_client.get_document(document_id)
 
-  # Extract and display the content
-  if retrieved_document:
-    content = retrieved_document["content"]  # Adjust based on the actual field name
-    st.write(f"Document Content: {content}")
-  else:
-    st.write("Document not found.")
+  # # Extract and display the content
+  # if retrieved_document:
+  #   content = retrieved_document["content"]  # Adjust based on the actual field name
+  #   st.write(f"Document Content: {content}")
+  # else:
+  #   st.write("Document not found.")
 
   return rubrics
         
