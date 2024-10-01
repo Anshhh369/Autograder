@@ -55,7 +55,7 @@ def vector_db():
       search_type="similarity"
     )
     for doc in docs:
-      content = doc[0].page_content
+      content = doc.page_content
       docs.append(content)
     st.write("Assignment: ", docs)
     
