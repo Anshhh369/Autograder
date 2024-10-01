@@ -27,6 +27,9 @@ if "context" not in st.session_state:
 if "extracted_answers" not in st.session_state:
     st.session_state.extracted_answers = None
 
+if "user_name" not in st.session_state:
+    st.session_state.user_name = None
+
 # Streamlit app interface
 st.title("Automatic Grading System")
 
@@ -73,7 +76,7 @@ if uploaded_file:
             pattern = r'user_name\s*=\s*"?(\w+)"?'
             search_results = re.search(pattern, answer, re.DOTALL)
             if search_results:
-                result = search_results.group(1).strip()
+                st.session_state.user_name = search_results.group(1).strip()
 
         
             # Display assistant response in chat message container
