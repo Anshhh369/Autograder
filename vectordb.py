@@ -43,7 +43,7 @@ def vector_db():
 
 
   # Log the list of retrieved documents for debugging
-  st.write(f"Retrieved rubrics: {document}")
+  st.write(f"Retrieved rubrics: {rubrics}")
 
   # search_client = SearchClient(endpoint=vector_store_address,
   #                             index_name="predefined_rubrics",
