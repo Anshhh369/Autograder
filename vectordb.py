@@ -42,7 +42,7 @@ def vector_db():
 
     docs = vector_store.similarity_search(
       query="*",
-      k=1, 
+      k=3, 
       search_type="similarity"
     )
 
