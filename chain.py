@@ -28,7 +28,8 @@ def get_chain(assignment,predefined_rubrics,chat_history):
         user_name = 
         I will use this user name to fetch your predefined rubrics.
         
-        Only after displaying the name,verify {predefined_rubrics} with the user by displaying whole exact {predefined_rubrics} to them clearly.
+        Only after displaying the name move to the next step.
+        Next step is to verify {predefined_rubrics} with the user by displaying whole exact {predefined_rubrics} to them clearly.
         Only after successfully verifying predefined_rubrics, move to the next step.
         Next step is to ask the user to upload the assignment through navigating to uploag page from left hand side. 
         Go through the {assignment} and highlight the mistakes that user made, make sure you explain all the mistakes in detail with soultions.
