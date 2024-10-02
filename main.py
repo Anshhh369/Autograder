@@ -5,6 +5,8 @@ from App.chat_history import format_chat_history
 from App.document_handler import process_document, extract_answers
 import re
 
+
+#Save all the variables in streamlit sessions
 if "messages" not in st.session_state:
     st.session_state.messages = []
     
@@ -51,12 +53,17 @@ if page == "Home":
     
         answer = get_scores(query)
 
+        
+        #Extract user name from chat
         pattern = r'user_name\s*=\s*"?(\w+)"?'
+        
         search_results = re.search(pattern, answer, re.DOTALL)
+        
         if search_results:
             st.session_state.user_name = search_results.group(0)
 
             if st.session_state.user_name:
+                #Fetch predefined rubrics using user name
                 st.session_state.rubrics = vector_db(st.session_state.user_name)
 
         
@@ -81,7 +88,7 @@ if page == "Upload Assignment":
     uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
     
     
-    # def chain():
+    # Document Handler:
     if uploaded_file:
     
         
