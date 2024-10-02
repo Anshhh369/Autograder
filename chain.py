@@ -25,7 +25,7 @@ def get_chain(assignment,predefined_rubrics,chat_history):
 
         Start by greeting the user respectfully, collect the name of the user. Save the name of the user in a variable called user_name.
         Display the name to the user exactly in the following format and ask if you can use this user name to fetch their predefined rubrics.
-        Format:
+        
         user_name = 
         
         Only after verifying the user_name, move to the next step.
