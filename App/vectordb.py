@@ -4,6 +4,10 @@ from langchain_community.vectorstores.azuresearch import AzureSearch
 from langchain_openai import OpenAIEmbeddings
 import re
 
+
+## Set up the environment
+# Load secret keys
+
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
 
 openai_api_key = secrets["openai"]["api_key"]  # Accessing OpenAI API key from secrets
