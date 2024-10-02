@@ -1,14 +1,12 @@
 from langchain.docstore.document import Document
 from langchain_community.document_loaders import PyPDFLoader,Docx2txtLoader,TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import pdfplumber
-import docx
 import tempfile
 import os.path
 import pathlib
 import re
-import streamlit as st
-
+import pdfplumber
+import docx
 
 # Function to extract text from uploaded files
 def process_document(uploaded_file):
