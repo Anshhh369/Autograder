@@ -1,10 +1,9 @@
-from document_processing import process_document, extract_answers
 import streamlit as st
-from vectordb import vector_db
-from rubrics import rubrics
-from example import example
-from chain import get_chain,get_scores
-from chat_history import format_chat_history
+from App.vectordb import vector_db
+from App.rubrics import rubrics
+from App.chain import get_chain,get_scores
+from App.chat_history import format_chat_history
+from App.document_handler import process_document, extract_answers
 import re
 
 if "messages" not in st.session_state:
@@ -21,9 +20,6 @@ if "rubrics" not in st.session_state:
     
 if "chain" not in st.session_state:
     st.session_state.chain = None
-
-if "context" not in st.session_state:
-    st.session_state.context = example()
 
 if "extracted_answers" not in st.session_state:
     st.session_state.extracted_answers = None
