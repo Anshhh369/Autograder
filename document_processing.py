@@ -25,7 +25,6 @@ def process_document(uploaded_file):
     # Determine file extension
     file_extension = uploaded_file.name.split(".")[-1].lower()
 
-    
     # Load document based on its extension
     
     if file_extension == "txt":
@@ -51,9 +50,6 @@ def process_document(uploaded_file):
 # Function to extract answers using regex patterns
 def extract_answers(uploaded_file):
 
-    # Pattern
-    pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
-
     file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
     
     # Save file to a temporary directory
@@ -65,7 +61,6 @@ def extract_answers(uploaded_file):
 
     # Determine file extension
     file_extension = uploaded_file.name.split(".")[-1].lower()
-
     
     if file_extension == "txt":
         text = uploaded_file.read().decode('utf-8')
@@ -76,7 +71,6 @@ def extract_answers(uploaded_file):
     elif file_extension == "docx":
         pages = docx.Document(uploaded_file)
         text = "\n".join([para.text for para in pages.paragraphs])
-
 
     extracted_answers = []
 
