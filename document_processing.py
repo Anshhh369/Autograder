@@ -49,7 +49,10 @@ def process_document(uploaded_file):
 
 
 # Function to extract answers using regex patterns
-def extract_answers(uploaded_file,pattern):
+def extract_answers(uploaded_file):
+
+    # Pattern
+    pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
 
     file_details = {"filename": uploaded_file.name, "filetype": uploaded_file.type}
     
