@@ -94,7 +94,7 @@ if page == "Upload Assignment":
         st.session_state.uploaded_file = process_document(uploaded_file)
     
         # Extract answers using regex patterns
-        st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
+        st.session_state.extracted_answers = extract_answers(uploaded_file)
     
         st.write("Assignment Uploaded Successfully")
     
