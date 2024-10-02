@@ -34,65 +34,72 @@ if "user_name" not in st.session_state:
 # Streamlit app interface
 st.title("Automatic Grading System")
 
-# Pattern
-pattern = r"(Question\s*\d:.*?)(Answer\s*\d:.*)"
+# Multi-page navigation
+page = st.sidebar.selectbox("Choose a page", ["Home", "Upload Assignment"])
 
-# File uploader
-uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
-
-st.session_state.context = example()
-
-
-# def chain():
-if uploaded_file:
-
-    
-    # Read file content
-    st.session_state.uploaded_file = process_document(uploaded_file)
-
-    # Extract answers using regex patterns
-    st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
-
-    st.write("Assignment Uploaded Successfully")
-
-    if st.session_state.extracted_answers:
-        
-        # Display chat messages from history on app rerun
-        for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.markdown(message["content"])
+if page == "Home":
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
                                 
-        if query := st.chat_input("Ask your question here"):
-            # Display user message in chat message container
-            with st.chat_message("user"):
-                st.markdown(query)
-            # Add user message to chat history
+    if query := st.chat_input("Ask your question here"):
+        # Display user message in chat message container
+        with st.chat_message("user"):
+            st.markdown(query)
+        # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": query})
 
-            st.session_state.chat_history = format_chat_history(st.session_state.messages)
+        st.session_state.chat_history = format_chat_history(st.session_state.messages)
     
-            answer = get_scores(query)
+        answer = get_scores(query)
 
-            pattern = r'user_name\s*=\s*"?(\w+)"?'
-            search_results = re.search(pattern, answer, re.DOTALL)
-            if search_results:
-                st.session_state.user_name = search_results.group(0)
+        pattern = r'user_name\s*=\s*"?(\w+)"?'
+        search_results = re.search(pattern, answer, re.DOTALL)
+        if search_results:
+            st.session_state.user_name = search_results.group(0)
 
-                if st.session_state.user_name:
-                    st.session_state.rubrics = vector_db(st.session_state.user_name)
+            if st.session_state.user_name:
+                st.session_state.rubrics = vector_db(st.session_state.user_name)
 
         
-            # Display assistant response in chat message container
-            with st.chat_message("assistant"):
-                st.markdown(answer)
-            # Add assistant response to chat history                
-            st.session_state.messages.append({"role": "assistant", "content": answer})
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(answer)
+        # Add assistant response to chat history                
+        st.session_state.messages.append({"role": "assistant", "content": answer})
 
             
                                         
-            # Button to clear chat messages
-            def clear_messages():
-                st.session_state.messages = []
+        # Button to clear chat messages
+        def clear_messages():
+            st.session_state.messages = []
             st.button("Clear", help = "Click to clear the chat", on_click=clear_messages)
+
+
+if page == "Upload Assignment":
+
+    
+    # File uploader
+    uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
+    
+    st.session_state.context = example()
+    
+    
+    # def chain():
+    if uploaded_file:
+    
+        
+        # Read file content
+        st.session_state.uploaded_file = process_document(uploaded_file)
+    
+        # Extract answers using regex patterns
+        st.session_state.extracted_answers = extract_answers(uploaded_file,pattern)
+    
+        st.write("Assignment Uploaded Successfully")
+    
+        if st.session_state.extracted_answers:
+        
+       
 
 
