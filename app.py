@@ -23,13 +23,15 @@ if "chain" not in st.session_state:
     st.session_state.chain = None
 
 if "context" not in st.session_state:
-    st.session_state.context = None
+    st.session_state.context = example()
 
 if "extracted_answers" not in st.session_state:
     st.session_state.extracted_answers = None
 
 if "user_name" not in st.session_state:
     st.session_state.user_name = None
+
+
 
 # Streamlit app interface
 st.title("Automatic Grading System")
@@ -83,8 +85,6 @@ if page == "Upload Assignment":
     # File uploader
     uploaded_file = st.file_uploader("Upload your assignment", type=["txt", "pdf", "docx"])
     
-    st.session_state.context = example()
-    
     
     # def chain():
     if uploaded_file:
@@ -98,7 +98,6 @@ if page == "Upload Assignment":
     
         st.write("Assignment Uploaded Successfully")
     
-        if st.session_state.extracted_answers:
         
        
 
