@@ -1,11 +1,7 @@
 import streamlit as st
 import os
 from langchain_community.vectorstores.azuresearch import AzureSearch
-from langchain_community.retrievers import AzureAISearchRetriever
-from langchain_community.retrievers.azure_ai_search import AzureCognitiveSearchRetriever
 from langchain_openai import OpenAIEmbeddings
-from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
 import re
 
 secrets = st.secrets  # Accessing secrets (API keys) stored securely
@@ -49,15 +45,6 @@ def vector_db(query):
     document = doc.page_content
     content.append(document)
 
-    # pattern = r""
-
-    # for item in content:
-    #   search_result = re.search(pattern, item,re.DOTALL)
-      
-    #   if search_result:
-    #     result = search_result.group(0)
-    
-  # st.write("result: ",content)
   
   return content
 
