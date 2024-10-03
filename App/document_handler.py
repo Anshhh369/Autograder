@@ -8,6 +8,7 @@ import pathlib
 import re
 import pdfplumber
 import docx
+import streamlit as st
 
 # Function to extract text from uploaded files
 def process_document(uploaded_file):
