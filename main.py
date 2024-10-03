@@ -93,7 +93,7 @@ if page == "Upload Assignment":
     
         
         # Read file content
-        st.session_state.uploaded_file = process_document(uploaded_file)
+        # st.session_state.uploaded_file = process_document(uploaded_file)
     
         # Extract answers using regex patterns
         st.session_state.extracted_answers = extract_answers(uploaded_file)
