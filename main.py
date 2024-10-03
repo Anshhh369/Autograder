@@ -91,10 +91,6 @@ if page == "Upload Assignment":
     # Document Handler:
     if uploaded_file:
     
-        
-        # Read file content
-        # st.session_state.uploaded_file = process_document(uploaded_file)
-    
         # Extract answers using regex patterns
         st.session_state.extracted_answers = extract_answers(uploaded_file)
     
