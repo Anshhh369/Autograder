@@ -92,7 +92,11 @@ def extract_answers(uploaded_file):
         extracted_answers.append(answers_cleaned)
         
     else:
+
+        st.write("Assignment:" , text)
         
-        extracted_answers = st.write("Answers not found")
+        return text
+        
+        
             
     return extracted_answers
