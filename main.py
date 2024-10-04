@@ -57,7 +57,9 @@ if page == "Home":
         search_results = re.search(pattern, answer, re.DOTALL)
         
         if search_results:
-            st.session_state.user_name = search_results.group(0)
+            st.session_state.user_name = search_results.group(1)
+
+            st.write("result: ", st.session_state.user_name)
 
             if st.session_state.user_name:
                 #Fetch predefined rubrics using user name
