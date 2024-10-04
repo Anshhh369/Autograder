@@ -35,7 +35,7 @@ def vector_db(query):
     api_version = "2023-11-01",
     embedding_function=OpenAIEmbeddings.embed_query,
     # Configure max retries for the Azure client
-    additional_search_client_options={"retry_total": 4},
+    # additional_search_client_options={"retry_total": 4},
   )
 
   docs = vector_store.similarity_search(
