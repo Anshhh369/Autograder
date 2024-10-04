@@ -61,21 +61,6 @@ def get_scores(query):
         except:
                 ans = response['answer']
                 answer = ans['text']
-                
-        #Extract user name from chat
-        # pattern = r'\s*"?(\w+)"?'
-        pattern = r'(?:user_name\s*=\s*)"?(\w+)"?'
-        
-        search_results = re.search(pattern, answer, re.DOTALL)
-        
-        if search_results:
-            st.session_state.user_name = search_results.group(1)
-
-            st.write("result: ", st.session_state.user_name)
-
-            if st.session_state.user_name:
-                #Fetch predefined rubrics using user name
-                st.session_state.rubrics = vector_db()
               
         
         return answer
