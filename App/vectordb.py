@@ -27,7 +27,7 @@ model = "text-embedding-ada-002"
 
 OpenAIEmbeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, model=model)
 
-def vector_db(query):
+def vector_db():
   vector_store = AzureSearch(
     azure_search_endpoint=vector_store_address,
     azure_search_key=vector_store_password,
@@ -37,7 +37,7 @@ def vector_db(query):
     # Configure max retries for the Azure client
     # additional_search_client_options={"retry_total": 4},
   )
-
+  query = st.session_state.user_name
   docs = vector_store.similarity_search(
     query=query,
     k=1, 
