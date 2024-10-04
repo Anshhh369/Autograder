@@ -40,7 +40,7 @@ def vector_db():
   query = st.session_state.user_name
   docs = vector_store.similarity_search(
     query=query,
-    k=1000, 
+    k=50, 
     search_type="similarity"
   )
     
