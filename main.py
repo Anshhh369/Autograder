@@ -52,7 +52,8 @@ if page == "Home":
 
         
         #Extract user name from chat
-        pattern = r'\s*"?(\w+)"?'
+        # pattern = r'\s*"?(\w+)"?'
+        pattern = r'(?:user_name\s*=\s*)"?(\w+)"?'
         
         search_results = re.search(pattern, answer, re.DOTALL)
         
