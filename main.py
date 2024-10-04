@@ -64,7 +64,7 @@ if page == "Home":
 
             if st.session_state.user_name:
                 #Fetch predefined rubrics using user name
-                st.session_state.rubrics = vector_db(st.session_state.user_name)
+                st.session_state.rubrics = vector_db()
 
         
         # Display assistant response in chat message container
