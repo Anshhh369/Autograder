@@ -48,6 +48,5 @@ def vector_db():
   for doc in docs:
     document = doc.page_content
     content.append(document)
-  st.write("content:", content)
   
   return content
